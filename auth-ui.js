@@ -622,7 +622,7 @@
       if (!firstAvatar) firstAvatar = avatarNode;
     });
 
-    if (firstAvatar) {
+    if (firstAvatar && notifications.length > 0) {
       const notifyWrap = createNotificationUI(firstAvatar, notificationState);
       bindNotificationPlacement(notifyWrap, firstAvatar);
     }
@@ -634,3 +634,5 @@
     run();
   }
 })();
+
+
