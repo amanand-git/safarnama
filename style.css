@@ -1262,31 +1262,36 @@ html {
   }
 
   .hero h1 {
-    font-size: 1.9rem;
-    line-height: 1.1;
+    font-size: 2.1rem;
+    line-height: 1.08;
     max-width: 100%;
     overflow-wrap: anywhere;
   }
 
   .hero p {
-    font-size: 1rem;
-    margin-bottom: 1.75rem;
+    font-size: 1.05rem;
+    margin-bottom: 1.9rem;
   }
 
   .hero {
-    min-height: auto;
-    justify-content: flex-start;
-    padding: 1.75rem 1rem 2.25rem;
+    min-height: calc(100svh - 138px);
+    justify-content: center;
+    padding: 2.25rem 1rem 3.5rem;
   }
 
   .search-container {
     max-width: 100%;
-    padding: 0 12px;
+    width: 100%;
+    padding: 0;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
   }
 
   .hero-search-container {
-    width: 100%;
-    max-width: 100%;
+    width: min(92vw, 520px);
+    max-width: 520px;
+    margin-inline: auto;
   }
 
   .hero-search-container .hero-search-input {
@@ -1329,11 +1334,11 @@ html {
     grid-template-columns: repeat(2, 1fr) !important; /* 2 Columns for Mobile */
     gap: 1rem;
   }
-  
-  .disciplines-section {
-    padding: 2rem 1rem;
-  }
 
+  .disciplines-section {
+    margin-top: 2.4rem;
+    padding: 2.5rem 1rem 2rem;
+  }
   /* Cities Grid Mobile */
   .cities-grid {
     grid-template-columns: repeat(2, 1fr) !important; /* 2 Columns Mobile */
@@ -2145,5 +2150,6 @@ html {
 
 /* Filter Modal Base (Hidden) */
 .filter-modal { display: none; }
+
 
 
