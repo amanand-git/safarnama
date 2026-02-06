@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPSC CSE Course - Safarnama</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .course-detail-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .course-header {
+            background: linear-gradient(135deg, #ea580c 0%, #dc2626 100%);
+            color: white;
+            padding: 60px 40px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .course-header h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .course-header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .course-meta {
+            display: flex;
+            gap: 30px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 12px 20px;
+            border-radius: 8px;
+        }
+
+        .meta-item i {
+            font-size: 1.3em;
+        }
+
+        .meta-item span {
+            font-weight: 500;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .info-section {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .info-section h2 {
+            color: #ea580c;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-section h2 i {
+            font-size: 0.9em;
+        }
+
+        .info-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-section li {
+            padding: 12px 0;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+
+        .info-section li:last-child {
+            border-bottom: none;
+        }
+
+        .info-section li:before {
+            content: "✓";
+            color: #10b981;
+            font-weight: bold;
+            font-size: 1.2em;
+            flex-shrink: 0;
+            margin-top: -2px;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .side-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid #ea580c;
+        }
+
+        .side-card h3 {
+            color: #ea580c;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .side-card p {
+            color: #6b7280;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .side-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .side-card li {
+            padding: 8px 0;
+            color: #6b7280;
+        }
+
+        .side-card li:before {
+            content: "•";
+            color: #ea580c;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .highlight-badge {
+            background: linear-gradient(135deg, #ea580c 0%, #dc2626 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #ea580c 0%, #dc2626 100%);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 15px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(234, 88, 12, 0.35);
+        }
+
+        .colleges-section {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .colleges-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .college-card {
+            background: linear-gradient(135deg, #FED7AA 0%, #FDBA74 100%);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #e5e7eb;
+        }
+
+        .college-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .college-card h4 {
+            color: #ea580c;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .course-header h1 {
+                font-size: 2em;
+            }
+
+            .course-header {
+                padding: 30px 20px;
+            }
+
+            .course-meta {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .colleges-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Header -->
+    <header class="top-header">
+        <div class="logo-container">
+            <img src="images/logo.png" alt="Safarnama Logo" style="height: 50px;">
+        </div>
+        <div class="top-nav">
+            <a href="courses.html" class="nav-btn orange">Courses</a>
+            <a href="colleges.html" class="nav-btn orange">Colleges</a>
+            <a href="login.html" class="nav-btn blue">Login</a>
+        </div>
+    </header>
+
+    <!-- Blue Navigation Bar -->
+    <nav class="blue-nav-bar">
+        <div class="nav-links">
+            <a href="courses.html" class="nav-link">← Back To Courses</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="course-detail-container">
+        <!-- Course Header -->
+        <div class="course-header">
+            <h1>UPSC Civil Service Examination (CSE)</h1>
+            <p>Become an IAS/IPS/IFS Officer. Master administrative and governance knowledge to serve the nation and make a difference in governance.</p>
+            <div class="course-meta">
+                <div class="meta-item">
+                    <i class="fas fa-hourglass-end"></i>
+                    <span>6-12 Months</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-book"></i>
+                    <span>Comprehensive Exam Prep</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-flag"></i>
+                    <span>Civil Administration</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-star"></i>
+                    <span>India's Toughest Exam</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Grid -->
+        <div class="content-grid">
+            <!-- Main Content -->
+            <div class="main-content">
+                <!-- Overview Section -->
+                <div class="info-section">
+                    <h2><i class="fas fa-info-circle"></i> Course Overview</h2>
+                    <p style="color: #6b7280; line-height: 1.8;">
+                        UPSC Civil Service Examination (CSE) preparation courses train candidates for India's most prestigious and challenging civil service exam. The course covers Indian polity, history, geography, economics, international relations, and current affairs. Successful candidates become IAS, IPS, IFS, and other civil service officers, serving in administrative and governance roles across India.
+                    </p>
+                </div>
+
+                <!-- Exam Subjects Section -->
+                <div class="info-section">
+                    <h2><i class="fas fa-book"></i> Exam Subjects & Topics</h2>
+                    <ul>
+                        <li>Indian Polity & Constitution</li>
+                        <li>History of India</li>
+                        <li>Geography of India</li>
+                        <li>Economics & Development</li>
+                        <li>Science & Technology</li>
+                        <li>International Relations</li>
+                        <li>Current Affairs & Politics</li>
+                        <li>Ethics & Governance</li>
+                        <li>Environmental Studies</li>
+                        <li>General Knowledge & Analysis</li>
+                    </ul>
+                </div>
+
+                <!-- Career Prospects Section -->
+                <div class="info-section">
+                    <h2><i class="fas fa-briefcase"></i> Career Opportunities</h2>
+                    <ul>
+                        <li>IAS Officer (Indian Administrative Service)</li>
+                        <li>IPS Officer (Indian Police Service)</li>
+                        <li>IFS Officer (Indian Foreign Service)</li>
+                        <li>IRS Officer (Indian Revenue Service)</li>
+                        <li>District Magistrate</li>
+                        <li>Police Commissioner</li>
+                        <li>Foreign Service Officer</li>
+                        <li>Defense Service Officer</li>
+                        <li>Senior Government Position</li>
+                        <li>Policy Making & Governance Role</li>
+                    </ul>
+                </div>
+
+                <!-- Top Coaching Centers Section -->
+                <div class="colleges-section">
+                    <h2 style="color: #ea580c; margin-bottom: 20px;">
+                        <i class="fas fa-chalkboard-user"></i> Top UPSC Coaching Centers
+                    </h2>
+                    <div class="colleges-grid">
+                        <div class="college-card">
+                            <h4>Vision IAS</h4>
+                            <p>Delhi - Premier CSE Coaching</p>
+                        </div>
+                        <div class="college-card">
+                            <h4>Vajiram & Ravi</h4>
+                            <p>Prestigious Coaching Institute</p>
+                        </div>
+                        <div class="college-card">
+                            <h4>Shankar IAS Academy</h4>
+                            <p>Delhi - Established Coaching</p>
+                        </div>
+                        <div class="college-card">
+                            <h4>IMS Learning</h4>
+                            <p>Comprehensive UPSC Prep</p>
+                        </div>
+                        <div class="college-card">
+                            <h4>Byju's UPSC</h4>
+                            <p>Online Learning Platform</p>
+                        </div>
+                        <div class="college-card">
+                            <h4>Hindu Academy</h4>
+                            <p>Current Affairs Focus</p>
+                        </div>
+                        <div class="college-card">
+                            <h4>Institute of Advanced Studies</h4>
+                            <p>Personalized Coaching</p>
+                        </div>
+                        <div class="college-card">
+                            <h4>Insights on India</h4>
+                            <p>Online CSE Preparation</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Key Facts Card -->
+                <div class="side-card">
+                    <h3><i class="fas fa-star" style="color: #ea580c;"></i> Key Facts</h3>
+                    <ul>
+                        <li><strong>Prep Duration:</strong> 6-12 Months</li>
+                        <li><strong>Difficulty Level:</strong> Highly Challenging</li>
+                        <li><strong>Eligibility:</strong> Graduation</li>
+                        <li><strong>Success Rate:</strong> &lt;1% Overall</li>
+                        <li><strong>Selection Ratio:</strong> 1:2000</li>
+                    </ul>
+                </div>
+
+                <!-- Exam Pattern Card -->
+                <div class="side-card">
+                    <h3><i class="fas fa-tasks" style="color: #ea580c;"></i> Exam Pattern</h3>
+                    <ul>
+                        <li>Preliminary Exam (Objective)</li>
+                        <li>Main Exam (Subjective)</li>
+                        <li>Personality Test/Interview</li>
+                        <li>Document Verification</li>
+                        <li>Final Merit List</li>
+                    </ul>
+                </div>
+
+                <!-- Skills Card -->
+                <div class="side-card">
+                    <h3><i class="fas fa-lightbulb" style="color: #ea580c;"></i> Skills Developed</h3>
+                    <ul>
+                        <li>Analytical Thinking</li>
+                        <li>Leadership Qualities</li>
+                        <li>Policy Understanding</li>
+                        <li>Communication Skills</li>
+                        <li>Administrative Vision</li>
+                    </ul>
+                </div>
+
+                <!-- Highlights Card -->
+                <div class="highlight-badge">
+                    <i class="fas fa-flag" style="margin-right: 10px;"></i>
+                    Serve India with Pride & Excellence
+                </div>
+
+                <!-- CTA Button -->
+                <button class="cta-button" onclick="alert('Thank you for your interest! Our team will contact you soon.')">
+                    <i class="fas fa-envelope" style="margin-right: 8px;"></i> Get More Information
+                </button>
+
+                <button class="cta-button" style="background: #dc2626;" onclick="window.location.href='colleges.html'">
+                    <i class="fas fa-search" style="margin-right: 8px;"></i> Find Coaching Centers
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer style="background: #1f2937; color: white; padding: 40px 20px; text-align: center; margin-top: 60px;">
+        <p style="margin-top: 10px; font-size: 0.9em; opacity: 0.8;">
+            <a href="about.html" style="color: #fb923c; text-decoration: none; margin: 0 15px;">About</a>
+            <a href="contact.html" style="color: #fb923c; text-decoration: none; margin: 0 15px;">Contact</a>
+            <a href="disclaimer.html" style="color: #fb923c; text-decoration: none; margin: 0 15px;">Disclaimer</a>
+        </p>
+        <p style="margin-top: 10px;">&copy; 2026 Safarnama. All rights reserved.</p>
+    </footer>
+<script src="auth-ui.js?v=20260206e"></script>
+</body>
+</html>
+
+
+

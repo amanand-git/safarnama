@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Safarnama Login</title>
+    <link rel="icon" type="image/png" href="images/favicon.png?v=2" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="login.css?v=20260206c" />
+  </head>
+  <body>
+    <header class="auth-topbar">
+      <a href="index.html" class="brand-link" aria-label="Safarnama Home">
+        <img src="images/logo.png" alt="Safarnama Logo" />
+      </a>
+      <nav class="auth-nav">
+        <a href="index.html">Home</a>
+        <a href="courses.html">Courses</a>
+        <a href="colleges.html">Colleges</a>
+      </nav>
+    </header>
+
+    <main class="auth-main">
+      <section class="auth-shell">
+        <section class="auth-card">
+          <div class="mode-switch" role="tablist" aria-label="Authentication mode">
+            <button id="loginModeBtn" class="mode-btn active" type="button" role="tab" aria-selected="true">
+              Login
+            </button>
+            <button id="signupModeBtn" class="mode-btn" type="button" role="tab" aria-selected="false">
+              Create Account
+            </button>
+          </div>
+
+          <form id="authForm" novalidate>
+            <h2 id="formTitle">Welcome Back</h2>
+
+            <label class="field-label" for="emailInput">Email</label>
+            <input id="emailInput" class="field-input" type="email" placeholder="you@example.com" required />
+
+            <label class="field-label" for="passwordInput">Password</label>
+            <input
+              id="passwordInput"
+              class="field-input"
+              type="password"
+              minlength="6"
+              placeholder="Minimum 6 characters"
+              required
+            />
+
+            <div id="confirmGroup" class="confirm-group hidden">
+              <label class="field-label" for="confirmPasswordInput">Confirm Password</label>
+              <input
+                id="confirmPasswordInput"
+                class="field-input"
+                type="password"
+                minlength="6"
+                placeholder="Re-enter password"
+              />
+            </div>
+
+            <button id="submitBtn" class="primary-btn" type="submit">Login</button>
+
+            <button id="forgotBtn" class="ghost-btn" type="button">Forgot Password</button>
+
+            <p id="statusBox" class="status-box" aria-live="polite"></p>
+          </form>
+
+          <section id="userPanel" class="user-panel hidden">
+            <p>Logged in as</p>
+            <strong id="userEmailText">-</strong>
+            <button id="logoutBtn" class="secondary-btn" type="button">Logout</button>
+          </section>
+
+          <section id="profilePanel" class="profile-panel hidden">
+            <h3>Complete Your Profile</h3>
+            <p class="profile-note">
+              Your account is ready. Add your basic details to continue.
+            </p>
+
+            <form id="profileForm" novalidate>
+              <label class="field-label" for="profileNameInput">Full Name</label>
+              <input id="profileNameInput" class="field-input" type="text" placeholder="Your name" required />
+
+              <label class="field-label" for="profileClassInput">Class / Course</label>
+              <input
+                id="profileClassInput"
+                class="field-input"
+                type="text"
+                placeholder="e.g. Class 12 / B.Tech CSE"
+                required
+              />
+
+              <label class="field-label" for="profileCityInput">City</label>
+              <input id="profileCityInput" class="field-input" type="text" placeholder="Your city" required />
+
+              <label class="field-label" for="profileImageInput">Profile Image</label>
+              <input id="profileImageInput" class="field-input" type="file" accept="image/*" />
+
+              <div class="profile-preview-wrap">
+                <img id="profilePreview" class="profile-preview hidden" alt="Profile preview" />
+              </div>
+
+              <button id="saveProfileBtn" class="primary-btn" type="submit">Save Profile</button>
+              <p id="profileStatus" class="status-box" aria-live="polite"></p>
+            </form>
+          </section>
+        </section>
+      </section>
+    </main>
+
+    <script type="module" src="login.js?v=20260206i"></script>
+  <script src="auth-ui.js?v=20260206e"></script>
+</body>
+</html>
+
+
+
+
+

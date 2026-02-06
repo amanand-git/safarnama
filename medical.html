@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Discipline - Safarnama</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .discipline-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .discipline-header {
+            background: linear-gradient(135deg, #1dd1a1 0%, #10ac84 100%);
+            color: white;
+            padding: 60px 40px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .discipline-header h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .discipline-header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .discipline-meta {
+            display: flex;
+            gap: 30px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 12px 20px;
+            border-radius: 8px;
+        }
+
+        .meta-item i {
+            font-size: 1.3em;
+        }
+
+        .meta-item span {
+            font-weight: 500;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .info-section {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .info-section h2 {
+            color: #1dd1a1;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-section h2 i {
+            font-size: 0.9em;
+        }
+
+        .info-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-section li {
+            padding: 12px 0;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+
+        .info-section li:last-child {
+            border-bottom: none;
+        }
+
+        .info-section li:before {
+            content: "✓";
+            color: #10b981;
+            font-weight: bold;
+            font-size: 1.2em;
+            flex-shrink: 0;
+            margin-top: -2px;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .side-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid #1dd1a1;
+        }
+
+        .side-card h3 {
+            color: #1dd1a1;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .side-card p {
+            color: #6b7280;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .side-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .side-card li {
+            padding: 8px 0;
+            color: #6b7280;
+        }
+
+        .side-card li:before {
+            content: "•";
+            color: #1dd1a1;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .highlight-badge {
+            background: linear-gradient(135deg, #1dd1a1 0%, #10ac84 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #1dd1a1 0%, #10ac84 100%);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 15px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(29, 209, 161, 0.35);
+        }
+
+        .courses-section {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .course-card {
+            background: linear-gradient(135deg, #d4f4dd 0%, #a8e6d9 100%);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #e5e7eb;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .course-card h4 {
+            color: #1dd1a1;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        .course-card p {
+            color: #6b7280;
+            font-size: 0.9em;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #1dd1a1;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 30px;
+            transition: gap 0.2s;
+        }
+
+        .back-link:hover {
+            gap: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .discipline-header h1 {
+                font-size: 2em;
+            }
+
+            .discipline-header {
+                padding: 30px 20px;
+            }
+
+            .discipline-meta {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Header -->
+    <header class="top-header">
+        <div class="logo-container">
+            <img src="images/logo.png" alt="Safarnama Logo" style="height: 50px;">
+        </div>
+        <div class="top-nav">
+            <a href="courses.html" class="nav-btn orange">Courses</a>
+            <a href="colleges.html" class="nav-btn orange">Colleges</a>
+            <a href="login.html" class="nav-btn blue">Login</a>
+        </div>
+    </header>
+
+    <!-- Blue Navigation Bar -->
+    <nav class="blue-nav-bar">
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">← Back To Home</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="discipline-container">
+        <!-- Discipline Header -->
+        <div class="discipline-header">
+            <h1>Medical Discipline</h1>
+            <p>Become a healthcare professional dedicated to saving lives and advancing medical science. Pursue a career in medicine to serve humanity with competence, compassion, and commitment.</p>
+            <div class="discipline-meta">
+                <div class="meta-item">
+                    <i class="fas fa-heartbeat"></i>
+                    <span>Healthcare Excellence</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>Globally Recognized</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-globe"></i>
+                    <span>International Practice</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-briefcase"></i>
+                    <span>High Demand Careers</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Grid -->
+        <div class="content-grid">
+            <!-- Main Content -->
+            <div class="main-content">
+                <!-- Overview Section -->
+                <div class="info-section">
+                    <h2><i class="fas fa-info-circle"></i> Discipline Overview</h2>
+                    <p style="color: #6b7280; line-height: 1.8;">
+                        Medicine is a noble discipline focused on diagnosing, treating, and preventing human illness and disease. Medical professionals play a crucial role in society, combining scientific knowledge with practical skills to improve health outcomes. The field encompasses various specializations including general medicine, surgery, pediatrics, cardiology, neurology, psychiatry, and many others, offering diverse career paths and opportunities for specialization and research.
+                    </p>
+                </div>
+
+                <!-- Why Medical Section -->
+                <div class="info-section">
+                    <h2><i class="fas fa-star"></i> Why Choose Medical?</h2>
+                    <ul>
+                        <li>Noble profession serving humanity and saving lives</li>
+                        <li>Excellent earning potential and career stability</li>
+                        <li>Multiple specialization options to choose from</li>
+                        <li>Global recognition and international opportunities</li>
+                        <li>Continuous learning and advancing medical knowledge</li>
+                        <li>High social status and respect in society</li>
+                        <li>Job security and consistent demand</li>
+                        <li>Opportunity to conduct medical research and innovation</li>
+                    </ul>
+                </div>
+
+                <!-- Career Paths Section -->
+                <div class="info-section">
+                    <h2><i class="fas fa-briefcase"></i> Career Paths in Medical</h2>
+                    <ul>
+                        <li>General Practitioner / Family Physician</li>
+                        <li>Cardiologist</li>
+                        <li>Neurologist</li>
+                        <li>Surgeon</li>
+                        <li>Pediatrician</li>
+                        <li>Psychiatrist</li>
+                        <li>Pathologist</li>
+                        <li>Radiologist</li>
+                        <li>Anesthesiologist</li>
+                        <li>Medical Researcher</li>
+                    </ul>
+                </div>
+
+                <!-- Featured Courses Section -->
+                <div class="courses-section">
+                    <h2 style="color: #1dd1a1; margin-bottom: 20px;">
+                        <i class="fas fa-book"></i> Featured Medical Courses
+                    </h2>
+                    <div class="courses-grid">
+                        <a href="mbbs.html" class="course-card">
+                            <h4>MBBS</h4>
+                            <p>5.5-Year Medical Degree Program</p>
+                        </a>
+                        <a href="courses.html" class="course-card">
+                            <h4>MD/MS Programs</h4>
+                            <p>Postgraduate Medical Specializations</p>
+                        </a>
+                        <a href="courses.html" class="course-card">
+                            <h4>Nursing</h4>
+                            <p>Bachelor/Diploma in Nursing</p>
+                        </a>
+                        <a href="pharmacy.html" class="course-card">
+                            <h4>Pharmacy</h4>
+                            <p>Bachelor of Pharmacy Program</p>
+                        </a>
+                        <a href="courses.html" class="course-card">
+                            <h4>Medical Research</h4>
+                            <p>Clinical & Medical Research Programs</p>
+                        </a>
+                        <a href="courses.html" class="course-card">
+                            <h4>Public Health</h4>
+                            <p>Master in Public Health & Epidemiology</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Key Facts Card -->
+                <div class="side-card">
+                    <h3><i class="fas fa-star" style="color: #1dd1a1;"></i> Key Facts</h3>
+                    <ul>
+                        <li><strong>Entry Level:</strong> 12th (Science)</li>
+                        <li><strong>Duration:</strong> 5.5 Years (MBBS)</li>
+                        <li><strong>Demand:</strong> Very High</li>
+                        <li><strong>Salary Range:</strong> ₹4-30+ LPA</li>
+                        <li><strong>Job Growth:</strong> 15-20% yearly</li>
+                    </ul>
+                </div>
+
+                <!-- Specializations Card -->
+                <div class="side-card">
+                    <h3><i class="fas fa-stethoscope" style="color: #1dd1a1;"></i> Main Specializations</h3>
+                    <ul>
+                        <li>General Medicine</li>
+                        <li>Surgery</li>
+                        <li>Pediatrics</li>
+                        <li>Cardiology</li>
+                        <li>Neurology</li>
+                        <li>Oncology</li>
+                    </ul>
+                </div>
+
+                <!-- Industries Card -->
+                <div class="side-card">
+                    <h3><i class="fas fa-hospital" style="color: #1dd1a1;"></i> Top Hiring Sectors</h3>
+                    <ul>
+                        <li>Hospitals & Clinics</li>
+                        <li>Pharmaceutical Companies</li>
+                        <li>Medical Research Centers</li>
+                        <li>Government Health Services</li>
+                        <li>Medical Colleges</li>
+                        <li>Healthcare Corporates</li>
+                    </ul>
+                </div>
+
+                <!-- Highlights Card -->
+                <div class="highlight-badge">
+                    <i class="fas fa-heart" style="margin-right: 10px;"></i>
+                    Heal the World, Change Lives
+                </div>
+
+                <!-- CTA Button -->
+                <button class="cta-button" onclick="alert('Thank you for your interest! Our team will contact you soon.')">
+                    <i class="fas fa-envelope" style="margin-right: 8px;"></i> Get More Information
+                </button>
+
+                <button class="cta-button" style="background: #10b981;" onclick="window.location.href='colleges.html'">
+                    <i class="fas fa-search" style="margin-right: 8px;"></i> Find Colleges
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer style="background: #1f2937; color: white; padding: 40px 20px; text-align: center; margin-top: 60px;">
+        <p>&copy; 2026 Safarnama. All rights reserved.</p>
+        <p style="margin-top: 10px; font-size: 0.9em; opacity: 0.8;">
+            <a href="about.html" style="color: #fb923c; text-decoration: none; margin: 0 15px;">About</a>
+            <a href="contact.html" style="color: #fb923c; text-decoration: none; margin: 0 15px;">Contact</a>
+            <a href="disclaimer.html" style="color: #fb923c; text-decoration: none; margin: 0 15px;">Disclaimer</a>
+            <a href="terms.html" style="color: #fb923c; text-decoration: none; margin: 0 15px;">Terms</a>
+        </p>
+    </footer>
+<script src="auth-ui.js?v=20260206e"></script>
+</body>
+</html>
+
+
+

@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NLP Course - Safarnama</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .course-detail-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .course-header {
+            background: linear-gradient(135deg, #1d4ed8 0%, #7c3aed 100%);
+            color: white;
+            padding: 60px 40px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .course-header h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .course-header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .course-meta {
+            display: flex;
+            gap: 30px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 12px 20px;
+            border-radius: 8px;
+        }
+
+        .meta-item i {
+            font-size: 1.3em;
+        }
+
+        .meta-item span {
+            font-weight: 500;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .info-section {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .info-section h2 {
+            color: #1d4ed8;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-section h2 i {
+            font-size: 0.9em;
+        }
+
+        .info-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-section li {
+            padding: 12px 0;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+
+        .info-section li:last-child {
+            border-bottom: none;
+        }
+
+        .info-section li:before {
+            content: "\2713";
+            color: #10b981;
+            font-weight: bold;
+            font-size: 1.2em;
+            flex-shrink: 0;
+            margin-top: -2px;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .side-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid #1d4ed8;
+        }
+
+        .side-card h3 {
+            color: #1d4ed8;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .side-card p {
+            color: #6b7280;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .side-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .side-card li {
+            padding: 8px 0;
+            color: #6b7280;
+        }
+
+        .side-card li:before {
+            content: "\2022";
+            color: #1d4ed8;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .highlight-badge {
+            background: linear-gradient(135deg, #1d4ed8 0%, #7c3aed 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #1d4ed8 0%, #7c3aed 100%);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 15px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(29, 78, 216, 0.35);
+        }
+
+        .colleges-section {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .colleges-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .college-card {
+            background: linear-gradient(135deg, #dbeafe 0%, #ede9fe 100%);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #e5e7eb;
+        }
+
+        .college-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .college-card h4 {
+            color: #1d4ed8;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .course-header h1 {
+                font-size: 2em;
+            }
+
+            .course-header {
+                padding: 30px 20px;
+            }
+
+            .course-meta {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .colleges-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="top-header">
+        <div class="logo-container">
+            <img src="images/logo.png" alt="Safarnama Logo" style="height: 50px;">
+        </div>
+        <div class="top-nav">
+            <a href="courses.html" class="nav-btn orange">Courses</a>
+            <a href="colleges.html" class="nav-btn orange">Colleges</a>
+            <a href="login.html" class="nav-btn blue">Login</a>
+        </div>
+    </header>
+
+    <nav class="blue-nav-bar">
+        <div class="nav-links">
+            <a href="courses.html" class="nav-link">&larr; Back To Courses</a>
+        </div>
+    </nav>
+
+    <main class="course-detail-container">
+        <div class="course-header">
+            <h1>Natural Language Processing (NLP)</h1>
+            <p>
+                Build AI systems that understand, generate, and reason over human language.
+                Learn modern NLP pipelines from preprocessing to LLM-powered applications.
+            </p>
+            <div class="course-meta">
+                <div class="meta-item">
+                    <i class="fas fa-clock"></i>
+                    <span>4-7 Months</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>Intermediate to Advanced</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-language"></i>
+                    <span>AI & Language Tech</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-globe"></i>
+                    <span>Online/Offline</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-grid">
+            <div class="main-content">
+                <div class="info-section">
+                    <h2><i class="fas fa-info-circle"></i> Course Overview</h2>
+                    <p style="color: #6b7280; line-height: 1.8;">
+                        NLP is one of the fastest-moving areas of applied AI, powering chatbots, search,
+                        translation, summarization, and voice assistants. This course covers both classical NLP
+                        methods and transformer-based deep learning. You will build projects with embeddings,
+                        retrieval pipelines, and LLM workflows while learning responsible AI practices for quality,
+                        safety, and bias control.
+                    </p>
+                </div>
+
+                <div class="info-section">
+                    <h2><i class="fas fa-book"></i> Key Topics Covered</h2>
+                    <ul>
+                        <li>Text Preprocessing, Tokenization, and Linguistic Normalization</li>
+                        <li>Word Embeddings, Sentence Embeddings, and Vector Similarity</li>
+                        <li>Transformer Architecture: Attention, BERT, and GPT Foundations</li>
+                        <li>Prompt Engineering and Instruction Tuning Basics</li>
+                        <li>Retrieval-Augmented Generation (RAG) and Vector Databases</li>
+                        <li>Text Classification, Sentiment Analysis, and Intent Detection</li>
+                        <li>Named Entity Recognition and Information Extraction</li>
+                        <li>Machine Translation, Summarization, and Question Answering</li>
+                        <li>NLP Evaluation Metrics: BLEU, ROUGE, F1, and Human Evaluation</li>
+                        <li>Responsible AI for NLP: Hallucination, Safety, and Bias Mitigation</li>
+                    </ul>
+                </div>
+
+                <div class="info-section">
+                    <h2><i class="fas fa-briefcase"></i> Career Paths</h2>
+                    <ul>
+                        <li>NLP Engineer</li>
+                        <li>LLM Application Engineer</li>
+                        <li>Conversational AI Developer</li>
+                        <li>Machine Learning Engineer (NLP)</li>
+                        <li>AI Product Engineer</li>
+                        <li>Search and Recommendation Engineer</li>
+                        <li>Data Scientist (Language Analytics)</li>
+                        <li>AI Quality and Evaluation Specialist</li>
+                        <li>Prompt Engineer</li>
+                        <li>Research Associate (Language AI)</li>
+                    </ul>
+                </div>
+
+                <div class="colleges-section">
+                    <h2 style="color: #1d4ed8; margin-bottom: 20px;">
+                        <i class="fas fa-laptop"></i> Top Learning Platforms
+                    </h2>
+                    <div class="colleges-grid">
+                        <div class="college-card">
+                            <h4>Stanford CS224N</h4>
+                            <p>High-quality academic NLP lectures</p>
+                        </div>
+                        <div class="college-card">
+                            <h4>Hugging Face Course</h4>
+                            <p>Practical transformers and deployment</p>
+                        </div>
+                        <div class="college-card">
+                            <h4>Coursera</h4>
+                            <p>DeepLearning.AI NLP specialization</p>
+                        </div>
+                        <div class="college-card">
+                            <h4>edX</h4>
+                            <p>University-backed language AI tracks</p>
+                        </div>
+                        <div class="college-card">
+                            <h4>fast.ai</h4>
+                            <p>Hands-on deep learning foundations</p>
+                        </div>
+                        <div class="college-card">
+                            <h4>NPTEL</h4>
+                            <p>Structured NLP and AI coursework</p>
+                        </div>
+                        <div class="college-card">
+                            <h4>Kaggle Learn</h4>
+                            <p>Practical notebook-based exercises</p>
+                        </div>
+                        <div class="college-card">
+                            <h4>DeepLearning.AI</h4>
+                            <p>LLM-focused short courses and labs</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <div class="side-card">
+                    <h3><i class="fas fa-star" style="color: #1d4ed8;"></i> Key Facts</h3>
+                    <ul>
+                        <li><strong>Duration:</strong> 4-7 Months</li>
+                        <li><strong>Median Pay (BLS, 2024):</strong> $112,590/year</li>
+                        <li><strong>Job Outlook (2024-2034):</strong> 34%</li>
+                        <li><strong>Annual Openings (US):</strong> About 20,800</li>
+                        <li><strong>Demand Areas:</strong> LLM Apps, Search, and Automation</li>
+                    </ul>
+                </div>
+
+                <div class="side-card">
+                    <h3><i class="fas fa-tasks" style="color: #1d4ed8;"></i> Prerequisites</h3>
+                    <ul>
+                        <li>Python Programming Basics</li>
+                        <li>Statistics and Probability Fundamentals</li>
+                        <li>Linear Algebra Essentials</li>
+                        <li>Basic Machine Learning Understanding</li>
+                        <li>Comfort with Data Cleaning and Analysis</li>
+                    </ul>
+                </div>
+
+                <div class="side-card">
+                    <h3><i class="fas fa-lightbulb" style="color: #1d4ed8;"></i> Skills Gained</h3>
+                    <ul>
+                        <li>NLP Model Building</li>
+                        <li>Prompt and Retrieval Design</li>
+                        <li>Language Data Engineering</li>
+                        <li>Model Evaluation and Monitoring</li>
+                        <li>LLM Application Delivery</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-badge">
+                    <i class="fas fa-robot" style="margin-right: 10px;"></i>
+                    Build Language-First AI Products
+                </div>
+
+                <button class="cta-button" onclick="alert('Thank you for your interest! Our team will contact you soon.')">
+                    <i class="fas fa-envelope" style="margin-right: 8px;"></i> Get More Information
+                </button>
+
+                <button class="cta-button" style="background: #6d28d9;" onclick="window.location.href='colleges.html'">
+                    <i class="fas fa-search" style="margin-right: 8px;"></i> Find Courses
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <footer style="background: #1f2937; color: white; padding: 40px 20px; text-align: center; margin-top: 60px;">
+        <p style="margin-top: 10px; font-size: 0.9em; opacity: 0.8;">
+            <a href="about.html" style="color: #fb923c; text-decoration: none; margin: 0 15px;">About</a>
+            <a href="contact.html" style="color: #fb923c; text-decoration: none; margin: 0 15px;">Contact</a>
+            <a href="disclaimer.html" style="color: #fb923c; text-decoration: none; margin: 0 15px;">Disclaimer</a>
+        </p>
+        <p style="margin-top: 10px;">&copy; 2026 Safarnama. All rights reserved.</p>
+    </footer>
+<script src="auth-ui.js?v=20260206e"></script>
+</body>
+</html>
+
+
+
+

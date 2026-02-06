@@ -1,0 +1,753 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Safarnama - Find Courses That Fit You</title>
+    <link rel="stylesheet" href="style.css?v=20260206f" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Top Header -->
+    <header class="top-header">
+      <div class="logo-container">
+        <!-- Using text for now if image fails, or alt text -->
+        <!-- Place your logo file in the images folder and name it 'logo.png' -->
+        <img src="images/logo.png" alt="Safarnama Logo" style="height: 50px;">
+      </div>
+      <div class="top-nav">
+        <a href="courses.html" class="nav-btn orange">Courses</a>
+        <a href="colleges.html" class="nav-btn orange">Colleges</a>
+        <a href="login.html" class="nav-btn blue">Login</a>
+      </div>
+    </header>
+
+    <!-- Blue Bar Navigation -->
+    <nav class="blue-nav-bar">
+      <div class="nav-links">
+        <a href="#" class="nav-link" id="all-courses-link">All Courses <i class="fas fa-caret-down" style="font-size: 0.8em"></i></a>
+        <a href="mba.html" class="nav-link"
+          >MBA <i class="fas fa-caret-down" style="font-size: 0.8em"></i
+        ></a>
+        <a href="engineering.html" class="nav-link"
+          >Engineering <i class="fas fa-caret-down" style="font-size: 0.8em"></i
+        ></a>
+        <a href="medical.html" class="nav-link"
+          >Medical <i class="fas fa-caret-down" style="font-size: 0.8em"></i
+        ></a>
+        <a href="online-learning.html" class="nav-link"
+          >Online <i class="fas fa-caret-down" style="font-size: 0.8em"></i
+        ></a>
+        <a href="exams.html" class="nav-link">Exams</a>
+      </div>
+
+      <a href="safareasy-apps.html" class="safareasy-apps-btn">
+        <i class="fas fa-star apps-icon"></i> SafarEasy Apps
+      </a>
+    </nav>
+
+    <!-- Main Hero Section -->
+    <main class="hero">
+      <h1>Find Courses That Fit You</h1>
+      <p>And start your Safar here.</p>
+
+      <div class="search-container hero-search-container" id="heroSearchContainer">
+        <input
+          type="text"
+          id="heroSearchInput"
+          class="search-box hero-search-input"
+          placeholder="Search courses, colleges..."
+          autocomplete="off"
+        />
+        <button id="heroSearchBtn" class="search-btn hero-search-btn" aria-label="Search">
+          <i class="fas fa-search"></i>
+        </button>
+        <div id="heroSearchSuggestions" class="hero-search-suggestions" role="listbox" aria-label="Search suggestions"></div>
+      </div>
+
+      <a href="safarnama-ai.html" class="try-ai-btn">
+        <div class="ai-btn-glow"></div>
+        <!-- Replace with images/ai-logo.png if you have one, using a generic icon for now -->
+        <img src="images/ailogo.png" class="ai-logo" alt="AI">
+        <span class="ai-text">Try Safarnama AI</span>
+        <i class="fas fa-arrow-right ai-arrow"></i>
+      </a>
+    </main>
+
+    <!-- Popular Disciplines Section -->
+    <section class="disciplines-section">
+      <div class="disciplines-container">
+        <h2>Popular Disciplines</h2>
+        <div class="disciplines-grid">
+          <a href="engineering.html" class="discipline-card" style="text-decoration: none;">
+            <img src="images/engineering.png" alt="Engineering">
+            <span>Engineering</span>
+          </a>
+          <a href="management.html" class="discipline-card" style="text-decoration: none;">
+            <img src="images/management.png" alt="Management">
+            <span>Management</span>
+          </a>
+          <a href="medical.html" class="discipline-card" style="text-decoration: none;">
+            <img src="images/medical.png" alt="Medical">
+            <span>Medical</span>
+          </a>
+          <a href="pharmacy.html" class="discipline-card" style="text-decoration: none;">
+            <img src="images/pharmacy.png" alt="Pharmacy">
+            <span>Pharmacy</span>
+          </a>
+          <a href="law.html" class="discipline-card" style="text-decoration: none;">
+            <img src="images/law.png" alt="Law">
+            <span>Law</span>
+          </a>
+          <a href="commerce.html" class="discipline-card" style="text-decoration: none;">
+            <img src="images/commerce.png" alt="Commerce">
+            <span>Commerce</span>
+          </a>
+          <a href="computer-applications.html" class="discipline-card" style="text-decoration: none;">
+            <img src="images/computer.png" alt="Computer Applications">
+            <span>Computer Applications</span>
+          </a>
+          <a href="courses.html" class="discipline-card" style="text-decoration: none;">
+            <img src="images/all_courses.png" alt="View All Courses">
+            <span>View All Courses</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Where To Study Section -->
+    <section class="location-section">
+      <div class="location-container">
+        <h2>Where To Study?</h2>
+        <p class="section-subtitle">You will find something to spark your curiosity and enhance your knowledge.</p>
+        
+        <div class="location-search-container">
+          <i class="fas fa-search location-search-icon"></i>
+          <input type="text" id="locationSearchInput" class="location-search-box" placeholder="Search by State">
+          <button id="locationSearchBtn" class="location-search-btn">Search</button>
+          <div id="locationSuggestions" class="location-suggestions" role="listbox" aria-label="State suggestions"></div>
+        </div>
+
+        <div class="cities-grid">
+          <div class="location-card" data-city="Mumbai" data-state="Maharashtra">
+            <img src="images/mumbai.png" alt="Mumbai">
+            <span>Mumbai</span>
+          </div>
+          <div class="location-card" data-city="Delhi" data-state="Delhi">
+            <img src="images/delhi.png" alt="Delhi">
+            <span>Delhi</span>
+          </div>
+          <div class="location-card" data-city="Bangalore" data-state="Karnataka">
+            <img src="images/banglore.jpg" alt="Bangalore">
+            <span>Bangalore</span>
+          </div>
+          <div class="location-card" data-city="Chennai" data-state="Tamil Nadu">
+            <img src="images/Chennai.jpg" alt="Chennai">
+            <span>Chennai</span>
+          </div>
+           <div class="location-card" data-city="Hyderabad" data-state="Telangana">
+            <img src="images/Hyderabad.jpg" alt="Hyderabad">
+            <span>Hyderabad</span>
+          </div>
+          <div class="location-card" data-city="Kolkata" data-state="West Bengal">
+            <img src="images/Kolkata.jpg" alt="Kolkata">
+            <span>Kolkata</span>
+          </div>
+          <div class="location-card" data-city="Pune" data-state="Maharashtra">
+            <img src="images/pune.jpg" alt="Pune">
+            <span>Pune</span>
+          </div>
+          <div class="location-card" data-city="Jaipur" data-state="Rajasthan">
+            <img src="images/jaipur.jpg" alt="Jaipur">
+            <span>Jaipur</span>
+          </div>
+           <div class="location-card" data-city="Patna" data-state="Bihar">
+            <img src="images/patna.jpg" alt="Patna">
+            <span>patna</span>
+          </div>
+          <div class="location-card" data-city="Ahmedabad" data-state="Gujarat">
+            <img src="images/ahmedabad.jpg" alt="Ahmedabad">
+            <span>Ahmedabad</span>
+          </div>
+          <div class="location-card" data-city="Indore" data-state="Madhya Pradesh">
+            <img src="images/indore.jpg" alt="Indore">
+            <span>Indore</span>
+          </div>
+          <div class="location-card" data-city="Lucknow" data-state="Uttar Pradesh">
+            <img src="images/lucknow.jpg" alt="Lucknow">
+            <span>Lucknow</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="top-colleges">
+  <div class="section-container">
+    <h2>Top Colleges</h2>
+
+    <!-- Tabs -->
+    <div class="college-tabs">
+      <button class="tab active" data-course="management">Management</button>
+      <button class="tab" data-course="engineering">Engineering</button>
+      <button class="tab" data-course="science">Science</button>
+     <button class="tab" data-course="architecture">Architecture</button>
+      <button class="tab" data-course="medical">Medical</button>
+      <button class="tab" data-course="commerce">Commerce</button>
+    </div>
+
+    <!-- College List -->
+    <div class="college-list" id="collegeList">
+      <!-- Management List (Default Active) -->
+      <div id="management-list" class="college-list-content active">
+        <div class="college-card">
+          <div class="college-info">
+            <h3>IIM Ahmedabad</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Ahmedabad</p>
+          </div>
+          <a href="https://www.iima.ac.in" target="_blank" class="view-btn">View Website</a>
+        </div>
+        <div class="college-card">
+          <div class="college-info">
+            <h3>IIM Bangalore</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Bangalore</p>
+          </div>
+          <a href="https://www.iimb.ac.in" target="_blank" class="view-btn">View Website</a>
+        </div>
+        <div class="college-card">
+          <div class="college-info">
+            <h3>IIM Calcutta</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Kolkata</p>
+          </div>
+          <a href="https://www.iimcal.ac.in" target="_blank" class="view-btn">View Website</a>
+        </div>
+        <div class="college-card">
+          <div class="college-info">
+            <h3>Symbiosis (SIBM) Pune</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Pune</p>
+          </div>
+          <a href="https://www.sibm.edu" target="_blank" class="view-btn">View Website</a>
+        </div>
+        <div class="college-card">
+          <div class="college-info">
+            <h3>Christ University</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Bangalore</p>
+          </div>
+          <a href="https://christuniversity.in" target="_blank" class="view-btn">View Website</a>
+        </div>
+        <div class="college-card">
+          <div class="college-info">
+            <h3>IIFT Delhi</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Delhi</p>
+          </div>
+          <a href="https://www.iift.ac.in" target="_blank" class="view-btn">View Website</a>
+        </div>
+         <div class="college-card">
+          <div class="college-info">
+            <h3>IIM Bodh Gaya</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Bihar</p>
+          </div>
+          <a href="https://iimbg.ac.in" target="_blank" class="view-btn">View Website</a>
+        </div>
+        <div class="college-card">
+          <div class="college-info">
+            <h3>ICFAI Business School (IBS)</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Hyderabad</p>
+          </div>
+          <a href="https://www.ibsindia.org" target="_blank" class="view-btn">View Website</a>
+        </div>
+         <div class="college-card">
+          <div class="college-info">
+            <h3>IIM Kozhikode</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Kozhikode</p>
+          </div>
+          <a href="https://www.iimk.ac.in" target="_blank" class="view-btn">View Website</a>
+        </div>
+      </div>
+
+      <!-- Engineering List -->
+      <div id="engineering-list" class="college-list-content" style="display: none;">
+        <div class="college-card">
+          <div class="college-info">
+            <h3>IIT Bombay</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Mumbai</p>
+          </div>
+          <a href="https://www.iitb.ac.in" target="_blank" class="view-btn">View Website</a>
+        </div>
+        <div class="college-card">
+          <div class="college-info">
+            <h3>IIT Delhi</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Delhi</p>
+          </div>
+          <a href="https://home.iitd.ac.in" target="_blank" class="view-btn">View Website</a>
+        </div>
+        <div class="college-card">
+          <div class="college-info">
+            <h3>IIT Madras</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Chennai</p>
+          </div>
+          <a href="https://www.iitm.ac.in" target="_blank" class="view-btn">View Website</a>
+        </div>
+        <div class="college-card">
+          <div class="college-info">
+            <h3>IIT Kanpur</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Kanpur</p>
+          </div>
+          <a href="https://www.iitk.ac.in" target="_blank" class="view-btn">View Website</a>
+        </div>
+        <div class="college-card">
+          <div class="college-info">
+            <h3>IIT Kharagpur</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Kharagpur</p>
+          </div>
+          <a href="http://www.iitkgp.ac.in" target="_blank" class="view-btn">View Website</a>
+        </div>
+        <div class="college-card">
+          <div class="college-info">
+            <h3>IIT Roorkee</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Roorkee</p>
+          </div>
+          <a href="https://www.iitr.ac.in" target="_blank" class="view-btn">View Website</a>
+        </div>
+        <div class="college-card">
+          <div class="college-info">
+            <h3>IIT Hyderabad</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Hyderabad</p>
+          </div>
+          <a href="https://www.iith.ac.in" target="_blank" class="view-btn">View Website</a>
+        </div>
+        <div class="college-card">
+          <div class="college-info">
+            <h3>IIT Guwahati</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Guwahati</p>
+          </div>
+          <a href="https://www.iitg.ac.in" target="_blank" class="view-btn">View Website</a>
+        </div>
+        <div class="college-card">
+          <div class="college-info">
+            <h3>NIT Trichy</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Tiruchirappalli</p>
+          </div>
+          <a href="https://www.nitt.edu" target="_blank" class="view-btn">View Website</a>
+        </div>
+      </div>
+
+      <!-- Science List -->
+      <div id="science-list" class="college-list-content" style="display: none;">
+         <div class="college-card">
+          <div class="college-info">
+            <h3>IISc Bangalore</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Bangalore</p>
+          </div>
+          <a href="https://iisc.ac.in" target="_blank" class="view-btn">View Website</a>
+        </div>
+        <div class="college-card">
+          <div class="college-info">
+            <h3>IISER Pune</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Pune</p>
+          </div>
+          <a href="https://www.iiserpune.ac.in" target="_blank" class="view-btn">View Website</a>
+        </div>
+         <div class="college-card">
+          <div class="college-info">
+            <h3>Hindu College</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Delhi</p>
+          </div>
+          <a href="https://hinducollege.ac.in" target="_blank" class="view-btn">View Website</a>
+        </div>
+        <div class="college-card">
+          <div class="college-info">
+            <h3>Miranda House</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Delhi</p>
+          </div>
+          <a href="https://www.mirandahouse.ac.in" target="_blank" class="view-btn">View Website</a>
+        </div>
+        <div class="college-card">
+          <div class="college-info">
+            <h3>Hansraj College</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Delhi</p>
+          </div>
+          <a href="https://www.hansrajcollege.ac.in" target="_blank" class="view-btn">View Website</a>
+        </div>
+        <div class="college-card">
+          <div class="college-info">
+            <h3>Madras Christian College</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Chennai</p>
+          </div>
+          <a href="https://mcc.edu.in" target="_blank" class="view-btn">View Website</a>
+        </div>
+        <div class="college-card">
+          <div class="college-info">
+            <h3>Kirori Mal College</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Delhi</p>
+          </div>
+          <a href="https://www.kmcollege.ac.in" target="_blank" class="view-btn">View Website</a>
+        </div>
+        <div class="college-card">
+          <div class="college-info">
+            <h3>Loyola College</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Chennai</p>
+          </div>
+          <a href="https://www.loyolacollege.edu" target="_blank" class="view-btn">View Website</a>
+        </div>
+        <div class="college-card">
+          <div class="college-info">
+            <h3>Stella Maris College</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Chennai</p>
+          </div>
+          <a href="https://stellamariscollege.edu.in" target="_blank" class="view-btn">View Website</a>
+        </div>
+      </div>
+
+      <!-- Architecture List -->
+      <div id="architecture-list" class="college-list-content" style="display: none;">
+        <div class="college-card">
+          <div class="college-info">
+             <h3>IIT Kharagpur (Arch)</h3>
+             <p><i class="fas fa-map-marker-alt"></i> Kharagpur</p>
+           </div>
+           <a href="http://www.iitkgp.ac.in" target="_blank" class="view-btn">View Website</a>
+         </div>
+         <div class="college-card">
+          <div class="college-info">
+             <h3>NIT Calicut</h3>
+             <p><i class="fas fa-map-marker-alt"></i> Calicut</p>
+           </div>
+           <a href="https://www.nitc.ac.in" target="_blank" class="view-btn">View Website</a>
+         </div>
+         <div class="college-card">
+          <div class="college-info">
+             <h3>CEPT University</h3>
+             <p><i class="fas fa-map-marker-alt"></i> Ahmedabad</p>
+           </div>
+           <a href="https://cept.ac.in" target="_blank" class="view-btn">View Website</a>
+         </div>
+         <div class="college-card">
+          <div class="college-info">
+             <h3>SPA Delhi</h3>
+             <p><i class="fas fa-map-marker-alt"></i> Delhi</p>
+           </div>
+           <a href="http://spa.ac.in" target="_blank" class="view-btn">View Website</a>
+         </div>
+         <div class="college-card">
+           <div class="college-info">
+              <h3>SJB School of Arch</h3>
+              <p><i class="fas fa-map-marker-alt"></i> Bangalore</p>
+            </div>
+            <a href="https://www.sjbsap.edu.in" target="_blank" class="view-btn">View Website</a>
+          </div>
+          <div class="college-card">
+           <div class="college-info">
+              <h3>Jamia Millia Islamia</h3>
+              <p><i class="fas fa-map-marker-alt"></i> Delhi</p>
+            </div>
+            <a href="https://www.jmi.ac.in" target="_blank" class="view-btn">View Website</a>
+          </div>
+          <div class="college-card">
+           <div class="college-info">
+              <h3>NIT Trichy (Arch)</h3>
+              <p><i class="fas fa-map-marker-alt"></i> Tiruchirappalli</p>
+            </div>
+            <a href="https://www.nitt.edu" target="_blank" class="view-btn">View Website</a>
+          </div>
+           <div class="college-card">
+           <div class="college-info">
+              <h3>NIT Rourkela</h3>
+              <p><i class="fas fa-map-marker-alt"></i> Rourkela</p>
+            </div>
+            <a href="https://www.nitrkl.ac.in" target="_blank" class="view-btn">View Website</a>
+          </div>
+      </div>
+
+      <!-- Medical List -->
+      <div id="medical-list" class="college-list-content" style="display: none;">
+        <div class="college-card">
+          <div class="college-info">
+            <h3>AIIMS Delhi</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Delhi</p>
+          </div>
+          <a href="https://www.aiims.edu" target="_blank" class="view-btn">View Website</a>
+        </div>
+        <div class="college-card">
+          <div class="college-info">
+            <h3>CMC Vellore</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Vellore</p>
+          </div>
+          <a href="https://www.cmch-vellore.edu" target="_blank" class="view-btn">View Website</a>
+        </div>
+        <div class="college-card">
+          <div class="college-info">
+            <h3>NIMHANS</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Bangalore</p>
+          </div>
+          <a href="https://nimhans.ac.in" target="_blank" class="view-btn">View Website</a>
+        </div>
+        <div class="college-card">
+          <div class="college-info">
+            <h3>JIPMER</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Pondicherry</p>
+          </div>
+          <a href="https://jipmer.edu.in" target="_blank" class="view-btn">View Website</a>
+        </div>
+        <div class="college-card">
+          <div class="college-info">
+            <h3>SGPGIMS</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Lucknow</p>
+          </div>
+          <a href="https://sgpgims.org.in" target="_blank" class="view-btn">View Website</a>
+        </div>
+        <div class="college-card">
+          <div class="college-info">
+            <h3>BHU (IMS)</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Varanasi</p>
+          </div>
+          <a href="https://www.bhu.ac.in" target="_blank" class="view-btn">View Website</a>
+        </div>
+        <div class="college-card">
+          <div class="college-info">
+            <h3>Amrita Vishwa Vidyapeetham</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Coimbatore</p>
+          </div>
+          <a href="https://www.amrita.edu" target="_blank" class="view-btn">View Website</a>
+        </div>
+        <div class="college-card">
+          <div class="college-info">
+            <h3>KMC Manipal</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Manipal</p>
+          </div>
+          <a href="https://manipal.edu" target="_blank" class="view-btn">View Website</a>
+        </div>
+        <div class="college-card">
+          <div class="college-info">
+            <h3>AIIMS Nagpur</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Nagpur</p>
+          </div>
+          <a href="https://aiimsnagpur.edu.in" target="_blank" class="view-btn">View Website</a>
+        </div>
+      </div>
+
+      <!-- Commerce List -->
+      <div id="commerce-list" class="college-list-content" style="display: none;">
+         <div class="college-card">
+          <div class="college-info">
+            <h3>SRCC</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Delhi</p>
+          </div>
+          <a href="https://www.srcc.edu" target="_blank" class="view-btn">View Website</a>
+        </div>
+        <div class="college-card">
+          <div class="college-info">
+            <h3>Hindu College</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Delhi</p>
+          </div>
+          <a href="https://hinducollege.ac.in" target="_blank" class="view-btn">View Website</a>
+        </div>
+        <div class="college-card">
+          <div class="college-info">
+            <h3>Lady Shri Ram College</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Delhi</p>
+          </div>
+          <a href="https://lsr.edu.in" target="_blank" class="view-btn">View Website</a>
+        </div>
+        <div class="college-card">
+          <div class="college-info">
+            <h3>Hansraj College</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Delhi</p>
+          </div>
+          <a href="https://www.hansrajcollege.ac.in" target="_blank" class="view-btn">View Website</a>
+        </div>
+        <div class="college-card">
+          <div class="college-info">
+            <h3>Loyola College</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Chennai</p>
+          </div>
+          <a href="https://www.loyolacollege.edu" target="_blank" class="view-btn">View Website</a>
+        </div>
+        <div class="college-card">
+          <div class="college-info">
+            <h3>Madras Christian College</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Chennai</p>
+          </div>
+          <a href="https://mcc.edu.in" target="_blank" class="view-btn">View Website</a>
+        </div>
+        <div class="college-card">
+          <div class="college-info">
+            <h3>Christ University</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Bangalore</p>
+          </div>
+          <a href="https://christuniversity.in" target="_blank" class="view-btn">View Website</a>
+        </div>
+        <div class="college-card">
+          <div class="college-info">
+            <h3>Narsee Monjee (NMIMS)</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Mumbai</p>
+          </div>
+          <a href="https://www.nmims.edu" target="_blank" class="view-btn">View Website</a>
+        </div>
+      </div>
+    </div> <!-- End .section-container -->
+  </section>
+
+<!-- Latest Education News Section -->
+<section class="news-section">
+  <div class="news-header">
+    <h2>Latest Education News</h2>
+    <a href="articles.html" class="more-articles">More Articles →</a>
+  </div>
+  <div class="news-container" id="newsContainer">
+    <!-- News will be populated here by script.js -->
+  </div>
+</section>
+
+<!-- Newsletter Section -->
+<section class="newsletter-section">
+  <div class="newsletter-container">
+    <div class="newsletter-content">
+      <h2>Learn More, <span class="highlight-blue">Grow Faster</span></h2>
+      <p>Get important education news, updates and alerts straight to your inbox.</p>
+      
+      <div class="newsletter-form">
+        <input type="email" id="emailInput" placeholder="Enter your email address">
+        <button id="subscribeBtn">Subscribe Now</button>
+      </div>
+      <div id="newsletter-feedback" class="feedback-message"></div>
+      
+      <p class="privacy-text">We respect your privacy. No spam.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Footer Section -->
+<footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-left">
+      <h2 class="footer-logo">Safarnamastudy<span class="highlight-blue">.in</span></h2>
+      <p class="footer-desc">
+        Safarnama is a comprehensive platform to help students discover the right colleges and courses across India. Simplifying education decisions with trusted insights.
+      </p>
+      
+      <div class="social-connect">
+        <span>Connect with us:</span>
+        <a href="https://www.linkedin.com/in/aman-anand-024b973aa/" target="_blank" class="linkedin-icon" aria-label="LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="https://whatsapp.com/channel/0029VbBzpcRJuyABCTkwS62l" target="_blank" class="whatsapp-icon" aria-label="WhatsApp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="https://www.instagram.com/safarnamastudy/?hl=en" target="_blank" class="instagram-icon" aria-label="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </div>
+    </div>
+    
+    <div class="footer-links">
+      <div class="footer-column">
+        <h3>Medical</h3>
+        <ul>
+          <li><a href="#">MBBS Colleges</a></li>
+          <li><a href="#">AIIMS Colleges</a></li>
+          <li><a href="#">Medical Colleges in India</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-column">
+        <h3>Engineering</h3>
+        <ul>
+          <li><a href="#">IIT Colleges</a></li>
+          <li><a href="#">NIT Colleges</a></li>
+          <li><a href="#">Top Engineering Colleges</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-column">
+        <h3>MBA</h3>
+        <ul>
+          <li><a href="#">MBA Colleges in India</a></li>
+          <li><a href="#">Top MBA Colleges</a></li>
+          <li><a href="#">MBA Specializations</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Sub-Footer Section -->
+<section class="sub-footer">
+  <div class="sub-footer-container">
+    <div class="footer-legal-links">
+      <a href="about.html">About Us</a>
+      <span class="separator">|</span>
+      <a href="contact.html">Contact Us</a>
+      <span class="separator">|</span>
+      <a href="terms.html">Terms & Conditions</a>
+      <span class="separator">|</span>
+      <a href="disclaimer.html">Disclaimer</a>
+    </div>
+  </div>
+</section>
+
+<!-- Copyright Bar -->
+<div class="copyright-bar">
+  &copy; 2026 Safarnamastudy.in — All Rights Reserved
+</div>
+
+<!-- Courses Sidebar -->
+<div class="courses-sidebar" id="coursesSidebar">
+  <div class="sidebar-header">
+    <h3>All Courses</h3>
+    <button id="closeSidebarBtn">&times;</button>
+  </div>
+  <div class="sidebar-search">
+    <i class="fas fa-search"></i>
+    <input type="text" id="courseSearchInput" placeholder="Search Your Safar">
+  </div>
+  <div class="course-list-container">
+    <ul id="courseList">
+      <!-- Courses will be populated by JS -->
+    </ul>
+  </div>
+</div>
+
+
+<!-- Overlay for sidebar -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<!-- Scripts -->
+<script src="articles_data.js?v=20260206"></script>
+<script src="news_data.js?v=20260206c"></script>
+<script src="statewise-colleges-data.js?v=20260206"></script>
+<script src="script.js?v=20260206g"></script>
+<script src="auth-ui.js?v=20260206e"></script>
+</body>
+</html>
+
+
+
+
+

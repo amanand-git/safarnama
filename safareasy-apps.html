@@ -1,0 +1,587 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SafarEasy Apps - Make Your Safar Easy</title>
+    <link rel="icon" type="image/png" href="images/favicon.png?v=2" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <style>
+      :root {
+        --bg-1: #0f172a;
+        --bg-2: #1e293b;
+        --card-bg: rgba(255, 255, 255, 0.06);
+        --card-border: rgba(255, 255, 255, 0.14);
+        --text-main: #ffffff;
+        --text-soft: #cbd5e1;
+        --text-muted: #94a3b8;
+        --green: #10b981;
+        --green-dark: #059669;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Outfit", sans-serif;
+        background: linear-gradient(135deg, var(--bg-1), var(--bg-2));
+        color: var(--text-main);
+        min-height: 100vh;
+      }
+
+      .apps-navbar {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 12px 20px;
+        background: linear-gradient(135deg, #020617 0%, #0f172a 55%, #111827 100%);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        box-shadow: 0 8px 24px rgba(2, 6, 23, 0.5);
+      }
+
+      .apps-logo {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 6px 14px;
+        border-radius: 999px;
+        background:
+          linear-gradient(
+            135deg,
+            rgba(16, 185, 129, 0.34),
+            rgba(5, 150, 105, 0.24)
+          );
+        border: 1px solid rgba(110, 231, 183, 0.45);
+        box-shadow:
+          0 8px 26px rgba(16, 185, 129, 0.26),
+          inset 0 1px 0 rgba(255, 255, 255, 0.22);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+      }
+
+      .apps-logo img {
+        height: 44px;
+        width: auto;
+      }
+
+      .apps-hero {
+        position: relative;
+        overflow: hidden;
+        text-align: center;
+        padding: 72px 20px 54px;
+        background:
+          radial-gradient(circle at 16% 78%, rgba(16, 185, 129, 0.2), transparent 45%),
+          radial-gradient(circle at 84% 18%, rgba(59, 130, 246, 0.2), transparent 45%),
+          linear-gradient(135deg, #0f172a 0%, #1e293b 60%, #334155 100%);
+      }
+
+      .particle-layer {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+      }
+
+      .particle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.4);
+        animation: float 8s ease-in-out infinite;
+      }
+
+      .particle:nth-child(1) {
+        top: 22%;
+        left: 10%;
+        animation-delay: 0s;
+      }
+      .particle:nth-child(2) {
+        top: 78%;
+        left: 18%;
+        animation-delay: 1s;
+      }
+      .particle:nth-child(3) {
+        top: 38%;
+        left: 63%;
+        animation-delay: 2s;
+      }
+      .particle:nth-child(4) {
+        top: 62%;
+        left: 82%;
+        animation-delay: 3s;
+      }
+      .particle:nth-child(5) {
+        top: 14%;
+        left: 45%;
+        animation-delay: 4s;
+      }
+      .particle:nth-child(6) {
+        top: 28%;
+        left: 91%;
+        animation-delay: 5s;
+      }
+      .particle:nth-child(7) {
+        top: 74%;
+        left: 32%;
+        animation-delay: 6s;
+      }
+      .particle:nth-child(8) {
+        top: 88%;
+        left: 68%;
+        animation-delay: 7s;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0) translateX(0) scale(1);
+          opacity: 0.35;
+        }
+        50% {
+          transform: translateY(-30px) translateX(10px) scale(1.6);
+          opacity: 0.9;
+        }
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border-radius: 999px;
+        border: 1px solid rgba(16, 185, 129, 0.46);
+        background: rgba(16, 185, 129, 0.16);
+        color: #6ee7b7;
+        font-size: 14px;
+        font-weight: 700;
+        padding: 10px 18px;
+        margin-bottom: 22px;
+        animation: fadeUp 0.7s ease;
+      }
+
+      .hero-content h1 {
+        font-size: 48px;
+        line-height: 1.2;
+        font-weight: 800;
+        margin-bottom: 16px;
+        animation: fadeUp 0.7s ease 0.08s both;
+      }
+
+      .hero-content .highlight {
+        background: linear-gradient(135deg, #10b981, #34d399, #6ee7b7);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .hero-content .tagline {
+        font-family: "Poppins", sans-serif;
+        font-size: 20px;
+        line-height: 1.6;
+        color: var(--text-soft);
+        max-width: 700px;
+        margin: 0 auto 12px;
+        animation: fadeUp 0.7s ease 0.16s both;
+      }
+
+      .hero-content .subtitle {
+        font-family: "Poppins", sans-serif;
+        font-size: 16px;
+        color: var(--text-muted);
+        animation: fadeUp 0.7s ease 0.24s both;
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(28px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .apps-section {
+        padding: 72px 24px 84px;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 46px;
+      }
+
+      .section-header h2 {
+        font-size: 36px;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+
+      .section-header p {
+        color: var(--text-muted);
+        font-family: "Poppins", sans-serif;
+        font-size: 17px;
+      }
+
+      .apps-grid {
+        max-width: 1180px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 24px;
+      }
+
+      .app-card {
+        position: relative;
+        display: block;
+        text-decoration: none;
+        border-radius: 22px;
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        padding: 32px 24px;
+        box-shadow: 0 16px 40px rgba(2, 6, 23, 0.35);
+        transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      }
+
+      .app-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 5px;
+        border-radius: 22px 22px 0 0;
+        background: linear-gradient(90deg, var(--card-color-1), var(--card-color-2));
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.25s ease;
+      }
+
+      .app-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 22px 50px rgba(2, 6, 23, 0.5);
+        border-color: rgba(255, 255, 255, 0.26);
+      }
+
+      .app-card:hover::before {
+        transform: scaleX(1);
+      }
+
+      .app-icon {
+        width: 74px;
+        height: 74px;
+        border-radius: 18px;
+        display: grid;
+        place-items: center;
+        margin-bottom: 20px;
+        font-size: 30px;
+        color: #fff;
+        background: linear-gradient(135deg, var(--card-color-1), var(--card-color-2));
+      }
+
+      .app-card h3 {
+        color: #fff;
+        font-size: 22px;
+        margin-bottom: 8px;
+      }
+
+      .app-card p {
+        color: var(--text-soft);
+        font-size: 15px;
+        line-height: 1.65;
+        margin-bottom: 16px;
+        font-family: "Poppins", sans-serif;
+      }
+
+      .status-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border-radius: 999px;
+        padding: 8px 14px;
+        font-size: 13px;
+        font-weight: 700;
+        color: #065f46;
+        background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+      }
+
+      .compressor {
+        --card-color-1: #3b82f6;
+        --card-color-2: #2563eb;
+      }
+
+      .enhancer {
+        --card-color-1: #8b5cf6;
+        --card-color-2: #7c3aed;
+      }
+
+      .img-to-pdf {
+        --card-color-1: #f59e0b;
+        --card-color-2: #d97706;
+      }
+
+      .pdf-merger {
+        --card-color-1: #ef4444;
+        --card-color-2: #dc2626;
+      }
+
+      .cta-section {
+        position: relative;
+        overflow: hidden;
+        padding: 56px 20px;
+        text-align: center;
+        background:
+          linear-gradient(
+            135deg,
+            rgba(16, 185, 129, 0.16),
+            rgba(5, 150, 105, 0.12),
+            rgba(14, 165, 233, 0.14)
+          );
+        border-top: 1px solid rgba(255, 255, 255, 0.14);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+
+      .cta-section::before,
+      .cta-section::after {
+        content: "";
+        position: absolute;
+        width: 280px;
+        height: 280px;
+        border-radius: 50%;
+        pointer-events: none;
+      }
+
+      .cta-section::before {
+        top: -120px;
+        left: -70px;
+        background: radial-gradient(circle, rgba(16, 185, 129, 0.35), transparent 70%);
+      }
+
+      .cta-section::after {
+        right: -90px;
+        bottom: -130px;
+        background: radial-gradient(circle, rgba(56, 189, 248, 0.28), transparent 70%);
+      }
+
+      .cta-section > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      .cta-section h2 {
+        font-size: 31px;
+        margin-bottom: 10px;
+        color: #f8fafc;
+      }
+
+      .cta-section p {
+        font-family: "Poppins", sans-serif;
+        font-size: 17px;
+        color: rgba(226, 232, 240, 0.95);
+        margin-bottom: 24px;
+      }
+
+      .cta-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        color: #e2e8f0;
+        background: rgba(255, 255, 255, 0.14);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        box-shadow:
+          0 10px 26px rgba(2, 6, 23, 0.35),
+          inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        border-radius: 999px;
+        padding: 13px 24px;
+        font-weight: 700;
+        transition: transform 0.2s ease, background-color 0.2s ease;
+      }
+
+      .cta-btn:hover {
+        transform: translateY(-2px);
+        background: rgba(255, 255, 255, 0.22);
+      }
+
+      .apps-footer {
+        text-align: center;
+        color: #94a3b8;
+        font-size: 13px;
+        padding: 22px 12px 30px;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        background: #0b1220;
+      }
+
+      .apps-footer a {
+        color: #cbd5e1;
+        text-decoration: none;
+        margin: 0 6px;
+      }
+
+      @media (max-width: 920px) {
+        .apps-navbar {
+          padding: 11px 12px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .apps-logo {
+          padding: 5px 12px;
+        }
+
+        .apps-logo img {
+          height: 40px;
+        }
+
+        .hero-content h1 {
+          font-size: 33px;
+        }
+
+        .hero-content .tagline {
+          font-size: 16px;
+        }
+
+        .hero-content .subtitle {
+          font-size: 14px;
+        }
+
+        .apps-section {
+          padding: 56px 16px 66px;
+        }
+
+        .section-header h2 {
+          font-size: 28px;
+        }
+
+        .section-header p {
+          font-size: 15px;
+        }
+
+        .app-card {
+          padding: 28px 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="apps-navbar">
+      <a href="index.html" class="apps-logo" aria-label="Safarnama Home">
+        <img src="images/logo.png" alt="Safarnama" />
+      </a>
+    </header>
+
+    <section class="apps-hero">
+      <div class="particle-layer" aria-hidden="true">
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+      </div>
+
+      <div class="hero-content">
+        <div class="hero-badge">
+          <i class="fa-solid fa-star"></i>
+          Presenting SafarEasy Apps
+        </div>
+        <h1>
+          Why go anywhere else?<br />
+          <span class="highlight">Make your Safar easy and smooth</span>
+        </h1>
+        <p class="tagline">
+          All the tools you need in one place. Use powerful and simple utilities for images and PDFs
+          without jumping to different websites.
+        </p>
+        <p class="subtitle">
+          Free to use | Fast workflows | Privacy focused
+        </p>
+      </div>
+    </section>
+
+    <section class="apps-section">
+      <div class="section-header">
+        <h2>Our Powerful Apps</h2>
+        <p>Choose any tool and continue your work in seconds.</p>
+      </div>
+
+      <div class="apps-grid">
+        <a href="image-compressor.html" class="app-card compressor">
+          <div class="app-icon"><i class="fa-solid fa-file-zipper"></i></div>
+          <h3>Image Compressor</h3>
+          <p>Compress images with cleaner output and smaller file size for faster sharing.</p>
+          <span class="status-badge"><i class="fa-solid fa-check"></i> Available Now</span>
+        </a>
+
+        <a href="image-enhancer.html" class="app-card enhancer">
+          <div class="app-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+          <h3>Image Enhancer</h3>
+          <p>Improve clarity and look with quick enhancement options for your photos.</p>
+          <span class="status-badge"><i class="fa-solid fa-check"></i> Available Now</span>
+        </a>
+
+        <a href="image-to-pdf.html" class="app-card img-to-pdf">
+          <div class="app-icon"><i class="fa-solid fa-file-lines"></i></div>
+          <h3>Image to PDF</h3>
+          <p>Turn one or more images into a PDF flow and keep your documents organized.</p>
+          <span class="status-badge"><i class="fa-solid fa-check"></i> Available Now</span>
+        </a>
+
+        <a href="pdf-merger.html" class="app-card pdf-merger">
+          <div class="app-icon"><i class="fa-solid fa-file-import"></i></div>
+          <h3>PDF Merger</h3>
+          <p>Combine multiple PDF files in one place and keep pages arranged as needed.</p>
+          <span class="status-badge"><i class="fa-solid fa-check"></i> Available Now</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <h2>More apps are coming soon</h2>
+      <p>We are adding new learning and productivity utilities for students.</p>
+      <a href="index.html" class="cta-btn">
+        <i class="fa-solid fa-arrow-left"></i>
+        Back to Home
+      </a>
+    </section>
+
+    <footer class="apps-footer">
+      <a href="about.html">About</a> |
+      <a href="contact.html">Contact Us</a> |
+      <a href="disclaimer.html">Disclaimer</a>
+      <div style="margin-top: 10px;">&copy; 2026 Safarnama. All Rights Reserved.</div>
+    </footer>
+  <script src="auth-ui.js?v=20260206e"></script>
+</body>
+</html>
+
+
+
+

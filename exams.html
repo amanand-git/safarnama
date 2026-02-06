@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Preparation Programs - Safarnama</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .course-detail-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .course-header {
+            background: linear-gradient(135deg, #b91c1c 0%, #ea580c 100%);
+            color: white;
+            padding: 60px 40px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .course-header h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .course-header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .course-meta {
+            display: flex;
+            gap: 30px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 12px 20px;
+            border-radius: 8px;
+        }
+
+        .meta-item i {
+            font-size: 1.3em;
+        }
+
+        .meta-item span {
+            font-weight: 500;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .info-section {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .info-section h2 {
+            color: #b91c1c;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-section h2 i {
+            font-size: 0.9em;
+        }
+
+        .info-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-section li {
+            padding: 12px 0;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+
+        .info-section li:last-child {
+            border-bottom: none;
+        }
+
+        .info-section li:before {
+            content: "\2713";
+            color: #10b981;
+            font-weight: bold;
+            font-size: 1.2em;
+            flex-shrink: 0;
+            margin-top: -2px;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .side-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid #b91c1c;
+        }
+
+        .side-card h3 {
+            color: #b91c1c;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .side-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .side-card li {
+            padding: 8px 0;
+            color: #6b7280;
+        }
+
+        .side-card li:before {
+            content: "\2022";
+            color: #b91c1c;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .highlight-badge {
+            background: linear-gradient(135deg, #b91c1c 0%, #ea580c 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #b91c1c 0%, #ea580c 100%);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 15px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(185, 28, 28, 0.35);
+        }
+
+        .colleges-section {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .colleges-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .college-card {
+            background: linear-gradient(135deg, #fee2e2 0%, #fed7aa 100%);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #e5e7eb;
+        }
+
+        .college-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .college-card h4 {
+            color: #b91c1c;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .course-header h1 {
+                font-size: 2em;
+            }
+
+            .course-header {
+                padding: 30px 20px;
+            }
+
+            .course-meta {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .colleges-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="top-header">
+        <div class="logo-container">
+            <img src="images/logo.png" alt="Safarnama Logo" style="height: 50px;">
+        </div>
+        <div class="top-nav">
+            <a href="courses.html" class="nav-btn orange">Courses</a>
+            <a href="colleges.html" class="nav-btn orange">Colleges</a>
+            <a href="login.html" class="nav-btn blue">Login</a>
+        </div>
+    </header>
+
+    <nav class="blue-nav-bar">
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">&larr; Back To Home</a>
+        </div>
+    </nav>
+
+    <main class="course-detail-container">
+        <div class="course-header">
+            <h1>Exam Preparation Programs</h1>
+            <p>Get exam-ready with structured planning, mock tests, revision systems, and smart performance analytics.</p>
+            <div class="course-meta">
+                <div class="meta-item">
+                    <i class="fas fa-clock"></i>
+                    <span>3-12 Months (exam-wise)</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>School to Competitive Levels</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Objective and Subjective Patterns</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-globe"></i>
+                    <span>Online and Offline Modes</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-grid">
+            <div class="main-content">
+                <div class="info-section">
+                    <h2><i class="fas fa-info-circle"></i> Overview</h2>
+                    <p style="color: #6b7280; line-height: 1.8;">
+                        Exam preparation success depends on syllabus clarity, timed practice, mock analysis, and revision discipline.
+                        A structured program helps students prepare for board exams, entrance tests, and government recruitment exams
+                        through daily planning, topic-wise targets, and adaptive test strategy.
+                    </p>
+                </div>
+
+                <div class="info-section">
+                    <h2><i class="fas fa-book"></i> Major Exam Segments</h2>
+                    <ul>
+                        <li>School boards and foundation-level academic exams</li>
+                        <li>Engineering and medical entrance preparation tracks</li>
+                        <li>Management and law entrance exam pathways</li>
+                        <li>Government exams: SSC, Banking, Railways, Defence</li>
+                        <li>Teaching and eligibility tests</li>
+                        <li>Subjective exam answer-writing improvement modules</li>
+                        <li>Current affairs and GK-focused preparation</li>
+                        <li>Interview, GD, and personality round readiness</li>
+                    </ul>
+                </div>
+
+                <div class="info-section">
+                    <h2><i class="fas fa-briefcase"></i> Preparation Strategy Framework</h2>
+                    <ul>
+                        <li>Syllabus breakdown into weekly milestones</li>
+                        <li>Daily concept + practice + revision cycle</li>
+                        <li>Sectional tests and full-length timed mocks</li>
+                        <li>Error-log based weak-area correction</li>
+                        <li>Previous year question paper analysis</li>
+                        <li>Speed-accuracy optimization for objective exams</li>
+                        <li>Answer structuring for descriptive papers</li>
+                        <li>Final 30-day intensive revision planning</li>
+                    </ul>
+                </div>
+
+                <div class="colleges-section">
+                    <h2 style="color: #b91c1c; margin-bottom: 20px;">
+                        <i class="fas fa-laptop"></i> Top Preparation Platforms
+                    </h2>
+                    <div class="colleges-grid">
+                        <div class="college-card"><h4>Testbook</h4><p>Mock analytics and exam dashboards</p></div>
+                        <div class="college-card"><h4>Adda247</h4><p>Government exam live batches</p></div>
+                        <div class="college-card"><h4>Unacademy</h4><p>Exam-focused mentor tracks</p></div>
+                        <div class="college-card"><h4>PW</h4><p>Affordable exam prep ecosystem</p></div>
+                        <div class="college-card"><h4>Oliveboard</h4><p>Section-wise and full-test preparation</p></div>
+                        <div class="college-card"><h4>BYJU'S Exam Prep</h4><p>Structured exam preparation modules</p></div>
+                        <div class="college-card"><h4>NTA/UPSC/SSC Portals</h4><p>Official notifications and updates</p></div>
+                        <div class="college-card"><h4>NCERT + PYQ Practice</h4><p>Concept and exam confidence building</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <div class="side-card">
+                    <h3><i class="fas fa-star" style="color: #b91c1c;"></i> Quick Facts</h3>
+                    <ul>
+                        <li>Best Results: Consistency + mock review</li>
+                        <li>Most Common Mistake: Low revision time</li>
+                        <li>Critical Habit: Daily timed practice</li>
+                        <li>Success Driver: Weak-topic correction cycle</li>
+                        <li>Output: Better rank and confidence</li>
+                    </ul>
+                </div>
+
+                <div class="side-card">
+                    <h3><i class="fas fa-tasks" style="color: #b91c1c;"></i> Before You Begin</h3>
+                    <ul>
+                        <li>Pick one exam target at a time</li>
+                        <li>Use official latest syllabus only</li>
+                        <li>Set realistic weekly targets</li>
+                        <li>Track score trends, not single tests</li>
+                        <li>Protect revision hours daily</li>
+                    </ul>
+                </div>
+
+                <div class="side-card">
+                    <h3><i class="fas fa-lightbulb" style="color: #b91c1c;"></i> Skills You Build</h3>
+                    <ul>
+                        <li>Time management under pressure</li>
+                        <li>Question selection strategy</li>
+                        <li>Accuracy control and consistency</li>
+                        <li>Exam temperament and focus</li>
+                        <li>Structured revision discipline</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-badge">
+                    <i class="fas fa-bullseye" style="margin-right: 10px;"></i>
+                    Plan Hard. Practice Smart.
+                </div>
+
+                <button class="cta-button" onclick="window.location.href='courses.html'">
+                    <i class="fas fa-search" style="margin-right: 8px;"></i> Explore Exam Courses
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <footer style="background: #1f2937; color: white; padding: 40px 20px; text-align: center; margin-top: 60px;">
+        <p style="margin-top: 10px; font-size: 0.9em; opacity: 0.8;">
+            <a href="about.html" style="color: #fb923c; text-decoration: none; margin: 0 15px;">About</a>
+            <a href="contact.html" style="color: #fb923c; text-decoration: none; margin: 0 15px;">Contact</a>
+            <a href="disclaimer.html" style="color: #fb923c; text-decoration: none; margin: 0 15px;">Disclaimer</a>
+        </p>
+        <p style="margin-top: 10px;">&copy; 2026 Safarnama. All rights reserved.</p>
+    </footer>
+<script src="auth-ui.js?v=20260206e"></script>
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>State-Wise College Explorer - Safarnama</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="all-india-colleges.css">
+</head>
+<body>
+    <header class="site-header">
+        <a href="index.html" class="brand">
+            <img src="images/logo.png" alt="Safarnama">
+        </a>
+        <nav class="header-nav">
+            <a href="index.html">Home</a>
+            <a href="courses.html">Courses</a>
+            <a href="colleges.html">Colleges</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <p class="eyebrow">India College Directory</p>
+                <h1>State-Wise Colleges by Safarnama</h1>
+                <p class="hero-subtext">Each listed state has 20 colleges with state, stream, and institute-type filters.</p>
+            </div>
+        </section>
+
+        <section class="filters-section">
+            <div class="filters-wrap">
+                <button class="all-filter-btn" id="allFilterBtn">All Filter</button>
+
+                <label class="filter-item">
+                    <span>Select State</span>
+                    <select id="stateFilter">
+                        <option value="">Select State</option>
+                    </select>
+                </label>
+
+                <label class="filter-item">
+                    <span>Select City</span>
+                    <select id="cityFilter">
+                        <option value="">Select City</option>
+                    </select>
+                </label>
+
+                <label class="filter-item">
+                    <span>Select Stream</span>
+                    <select id="streamFilter">
+                        <option value="">Select Stream</option>
+                    </select>
+                </label>
+
+                <label class="filter-item">
+                    <span>Institute Type</span>
+                    <select id="typeFilter">
+                        <option value="">Govt or Private</option>
+                        <option value="Government">Government</option>
+                        <option value="Private">Private</option>
+                    </select>
+                </label>
+            </div>
+        </section>
+
+        <section class="summary-section">
+            <div class="result-count-card">
+                <p class="label">Colleges Shown</p>
+                <p class="value" id="resultCount">0</p>
+            </div>
+            <div class="program-counts" id="programCounts"></div>
+        </section>
+
+        <section class="results-section">
+            <div class="table-shell">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Program</th>
+                            <th>College Name</th>
+                            <th>City</th>
+                            <th>State</th>
+                            <th>Institute Type</th>
+                            <th>Website</th>
+                        </tr>
+                    </thead>
+                    <tbody id="collegeTableBody"></tbody>
+                </table>
+            </div>
+
+            <div class="cards-grid" id="collegeCards"></div>
+            <p id="noResultMessage" class="no-result hidden">No colleges found for selected filters. Try another state/stream/type combination.</p>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-links">
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="disclaimer.html">Disclaimer</a>
+        </div>
+        <p class="copyright">2026 Safarnama. All Rights Reserved.</p>
+    </footer>
+
+    <script src="statewise-colleges-data.js"></script>
+    <script src="all-india-colleges.js"></script>
+<script src="auth-ui.js?v=20260206e"></script>
+</body>
+</html>
+
+
+
+

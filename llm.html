@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLM Course - Safarnama</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .course-detail-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .course-header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 100%);
+            color: white;
+            padding: 60px 40px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .course-header h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .course-header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .course-meta {
+            display: flex;
+            gap: 30px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 12px 20px;
+            border-radius: 8px;
+        }
+
+        .meta-item i {
+            font-size: 1.3em;
+        }
+
+        .meta-item span {
+            font-weight: 500;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .info-section {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .info-section h2 {
+            color: #1e3a8a;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-section h2 i {
+            font-size: 0.9em;
+        }
+
+        .info-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-section li {
+            padding: 12px 0;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+
+        .info-section li:last-child {
+            border-bottom: none;
+        }
+
+        .info-section li:before {
+            content: "\2713";
+            color: #10b981;
+            font-weight: bold;
+            font-size: 1.2em;
+            flex-shrink: 0;
+            margin-top: -2px;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .side-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid #1e3a8a;
+        }
+
+        .side-card h3 {
+            color: #1e3a8a;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .side-card p {
+            color: #6b7280;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .side-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .side-card li {
+            padding: 8px 0;
+            color: #6b7280;
+        }
+
+        .side-card li:before {
+            content: "\2022";
+            color: #1e3a8a;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .highlight-badge {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 100%);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 15px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .colleges-section {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .colleges-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .college-card {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #e5e7eb;
+        }
+
+        .college-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .college-card h4 {
+            color: #1e3a8a;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .course-header h1 {
+                font-size: 2em;
+            }
+
+            .course-header {
+                padding: 30px 20px;
+            }
+
+            .course-meta {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .colleges-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="top-header">
+        <div class="logo-container">
+            <img src="images/logo.png" alt="Safarnama Logo" style="height: 50px;">
+        </div>
+        <div class="top-nav">
+            <a href="courses.html" class="nav-btn orange">Courses</a>
+            <a href="colleges.html" class="nav-btn orange">Colleges</a>
+            <a href="login.html" class="nav-btn blue">Login</a>
+        </div>
+    </header>
+
+    <nav class="blue-nav-bar">
+        <div class="nav-links">
+            <a href="courses.html" class="nav-link">&larr; Back To Courses</a>
+        </div>
+    </nav>
+
+    <main class="course-detail-container">
+        <div class="course-header">
+            <h1>Master of Laws (LLM)</h1>
+            <p>Advance legal expertise through specialization in constitutional, corporate, criminal, international, or technology law.</p>
+            <div class="course-meta">
+                <div class="meta-item">
+                    <i class="fas fa-clock"></i>
+                    <span>1-2 Years (program-wise)</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>Postgraduate Law Degree</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-book-open"></i>
+                    <span>Advanced Legal Specialization</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-globe"></i>
+                    <span>Campus/Hybrid (institute-wise)</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-grid">
+            <div class="main-content">
+                <div class="info-section">
+                    <h2><i class="fas fa-info-circle"></i> Course Overview</h2>
+                    <p style="color: #6b7280; line-height: 1.8;">
+                        LLM is an advanced law program pursued after LLB for specialization and deeper legal research. Programs include coursework, seminars, dissertations, and case analysis in focused domains. The degree supports higher judiciary preparation, legal academia, policy roles, and senior legal practice.
+                    </p>
+                </div>
+
+                <div class="info-section">
+                    <h2><i class="fas fa-book"></i> Key Topics Covered</h2>
+                    <ul>
+                        <li>Advanced Constitutional Law</li>
+                        <li>Jurisprudence and Legal Theory</li>
+                        <li>International and Comparative Law</li>
+                        <li>Corporate and Commercial Law</li>
+                        <li>Criminal Justice and Procedure</li>
+                        <li>Intellectual Property Law</li>
+                        <li>Human Rights and Public Policy</li>
+                        <li>Research Methodology in Law</li>
+                        <li>Dissertation and Legal Writing</li>
+                        <li>Emerging Areas: Tech and Data Law</li>
+                    </ul>
+                </div>
+
+                <div class="info-section">
+                    <h2><i class="fas fa-briefcase"></i> Career Opportunities</h2>
+                    <ul>
+                        <li>Legal Research Associate</li>
+                        <li>Corporate Legal Consultant</li>
+                        <li>Policy and Regulatory Analyst</li>
+                        <li>Legal Academic or Lecturer</li>
+                        <li>Law Firm Associate (specialized)</li>
+                        <li>In-house Counsel Support Roles</li>
+                        <li>Human Rights and NGO Legal Roles</li>
+                        <li>Arbitration and Mediation Practice</li>
+                        <li>Judicial Services Preparation</li>
+                        <li>PhD in Law Pathway</li>
+                    </ul>
+                </div>
+
+                <div class="colleges-section">
+                    <h2 style="color: #1e3a8a; margin-bottom: 20px;">
+                        <i class="fas fa-laptop"></i> Top Institutions and Platforms
+                    </h2>
+                    <div class="colleges-grid">
+                        <div class="college-card">
+                            <h4>National Law Universities</h4>
+                            <p>Top LLM specializations</p>
+                        </div>
+                        <div class="college-card">
+                            <h4>Faculty of Law DU</h4>
+                            <p>Established postgraduate law tracks</p>
+                        </div>
+                        <div class="college-card">
+                            <h4>Jindal Global Law School</h4>
+                            <p>Interdisciplinary legal studies</p>
+                        </div>
+                        <div class="college-card">
+                            <h4>Symbiosis Law School</h4>
+                            <p>Applied legal specialization</p>
+                        </div>
+                        <div class="college-card">
+                            <h4>NALSAR and NLSIU</h4>
+                            <p>Research-oriented law programs</p>
+                        </div>
+                        <div class="college-card">
+                            <h4>SWAYAM Law Courses</h4>
+                            <p>Supplementary legal learning</p>
+                        </div>
+                        <div class="college-card">
+                            <h4>Coursera Law</h4>
+                            <p>International legal modules</p>
+                        </div>
+                        <div class="college-card">
+                            <h4>edX Law</h4>
+                            <p>University-backed law content</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <div class="side-card">
+                    <h3><i class="fas fa-star" style="color: #1e3a8a;"></i> Key Facts</h3>
+                    <ul>
+                        <li>Eligibility: LLB</li>
+                        <li>Duration: 1 or 2 years</li>
+                        <li>Focus: Specialization and research</li>
+                        <li>Output: Dissertation or thesis</li>
+                        <li>Career: Practice, policy, academia</li>
+                    </ul>
+                </div>
+
+                <div class="side-card">
+                    <h3><i class="fas fa-tasks" style="color: #1e3a8a;"></i> Prerequisites</h3>
+                    <ul>
+                        <li>LLB qualification</li>
+                        <li>Strong legal reading habit</li>
+                        <li>Case-law analysis comfort</li>
+                        <li>Research and citation skills</li>
+                        <li>Interest in specialization</li>
+                    </ul>
+                </div>
+
+                <div class="side-card">
+                    <h3><i class="fas fa-lightbulb" style="color: #1e3a8a;"></i> Skills Developed</h3>
+                    <ul>
+                        <li>Advanced legal reasoning</li>
+                        <li>Research and drafting</li>
+                        <li>Policy interpretation</li>
+                        <li>Specialized legal advisory</li>
+                        <li>Academic legal writing</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-badge">
+                    <i class="fas fa-gavel" style="margin-right: 10px;"></i>
+                    Specialize Your Legal Expertise
+                </div>
+
+                <button class="cta-button" onclick="alert('Thank you for your interest! Our team will contact you soon.')">
+                    <i class="fas fa-envelope" style="margin-right: 8px;"></i> Get More Information
+                </button>
+
+                <button class="cta-button" style="background: #1d4ed8;" onclick="window.location.href='colleges.html'">
+                    <i class="fas fa-search" style="margin-right: 8px;"></i> Find Courses
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <footer style="background: #1f2937; color: white; padding: 40px 20px; text-align: center; margin-top: 60px;">
+        <p style="margin-top: 10px; font-size: 0.9em; opacity: 0.8;">
+            <a href="about.html" style="color: #fb923c; text-decoration: none; margin: 0 15px;">About</a>
+            <a href="contact.html" style="color: #fb923c; text-decoration: none; margin: 0 15px;">Contact</a>
+            <a href="disclaimer.html" style="color: #fb923c; text-decoration: none; margin: 0 15px;">Disclaimer</a>
+        </p>
+        <p style="margin-top: 10px;">&copy; 2026 Safarnama. All rights reserved.</p>
+    </footer>
+<script src="auth-ui.js?v=20260206e"></script>
+</body>
+</html>
+
+
+

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Colleges - Safarnama</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="colleges.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">
+            <img src="images/logo.png" alt="Safarnama">
+        </div>
+
+        <nav class="nav-menu">
+            <a href="courses.html" class="orange-btn">Courses</a> 
+            <a href="colleges.html" class="orange-btn">Colleges</a>
+            <a href="login.html" class="login-btn">Login</a>
+        </nav>
+    </header>
+
+    <!-- Search Bar Section -->
+    <div class="search-section">
+        <div class="search-container">
+            <div class="search-box">
+                <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                </svg>
+                <input type="text" id="globalSearchInput" placeholder="Search for colleges, courses, exams..." autocomplete="off">
+                <button class="search-clear-btn" id="searchClearBtn" style="display: none;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="search-suggestions" id="searchSuggestions"></div>
+        </div>
+    </div>
+
+
+
+    <section class="filter-section">
+        <div class="filter-container">
+            <button class="filter-pill all-filter" id="allFilterBtn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                </svg>
+                All Filter
+            </button>
+
+            <div class="filter-separator"></div>
+
+            <div class="filter-scroll">
+                <div class="filter-dropdown-wrap" data-filter="stream">
+                    <button type="button" class="filter-pill filter-toggle">
+                        Stream <span class="chevron">⌄</span>
+                    </button>
+                    <div class="filter-dropdown"></div>
+                </div>
+
+                <div class="filter-dropdown-wrap" data-filter="state">
+                    <button type="button" class="filter-pill filter-toggle">
+                        State <span class="chevron">⌄</span>
+                    </button>
+                    <div class="filter-dropdown"></div>
+                </div>
+
+                <div class="filter-dropdown-wrap" data-filter="city">
+                    <button type="button" class="filter-pill filter-toggle">
+                        City <span class="chevron">⌄</span>
+                    </button>
+                    <div class="filter-dropdown"></div>
+                </div>
+
+                <div class="filter-dropdown-wrap" data-filter="degree">
+                    <button type="button" class="filter-pill filter-toggle">
+                        Degree <span class="chevron">⌄</span>
+                    </button>
+                    <div class="filter-dropdown"></div>
+                </div>
+
+
+                <div class="filter-dropdown-wrap" data-filter="collegeType">
+                    <button type="button" class="filter-pill filter-toggle">
+                        Type Of College <span class="chevron">⌄</span>
+                    </button>
+                    <div class="filter-dropdown"></div>
+                </div>
+
+                <div class="filter-dropdown-wrap" data-filter="entrance">
+                    <button type="button" class="filter-pill filter-toggle">
+                        Entrance Exam <span class="chevron">⌄</span>
+                    </button>
+                    <div class="filter-dropdown"></div>
+                </div>
+
+                <div class="filter-dropdown-wrap" data-filter="totalFee">
+                    <button type="button" class="filter-pill filter-toggle">
+                        Total Fee <span class="chevron">⌄</span>
+                    </button>
+                    <div class="filter-dropdown"></div>
+                </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="filter-modal" id="filterModal">
+        <div class="filter-modal-content">
+            <div class="filter-modal-header">
+                <h2>All Filter</h2>
+                <button class="filter-modal-close" id="closeModalBtn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="filter-modal-body">
+                <div class="filter-modal-sidebar">
+                    <button class="filter-category-btn active" data-category="stream">Stream</button>
+                    <button class="filter-category-btn" data-category="state">State</button>
+                    <button class="filter-category-btn" data-category="city">City</button>
+                    <button class="filter-category-btn" data-category="degree">Degree</button>
+                    <button class="filter-category-btn" data-category="collegeType">Type Of College</button>
+                    <button class="filter-category-btn" data-category="entrance">Entrance Exam</button>
+                    <button class="filter-category-btn" data-category="totalFee">Total Fee</button>
+                </div>
+
+                <div class="filter-modal-options">
+                    <div class="filter-search-box">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                        <input type="text" id="filterSearchInput" placeholder="FIND STREAM">
+                    </div>
+
+                    <div class="filter-options-grid" id="filterOptionsGrid">
+                        </div>
+
+                    <div class="filter-actions">
+                        <div></div>
+                        <button class="clear-btn" id="clearFiltersBtn">Clear</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-modal-footer">
+                <button class="cancel-btn" id="cancelBtn">Cancel</button>
+                <button class="apply-btn" id="applyBtn">Apply</button>
+            </div>
+        </div>
+    </div>
+
+    <section class="colleges-content">
+        <div class="content-header" id="contentHeader">
+            <button class="close-header-btn" id="closeHeaderBtn" aria-label="Close header">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <h2>Top Colleges in India</h2>
+            <p>Use the filters above to shortlist colleges based on your preferences.</p>
+            <a href="all-india-colleges.html" class="statewise-link">Open State-Wise Program College Page</a>
+        </div>
+
+        <div class="colleges-section" id="mbaSection">
+            <div class="section-header">
+                <h2>Top MBA Colleges in India</h2>
+                <span class="section-badge">150 COLLEGES</span>
+            </div>
+
+            <div class="table-container">
+                <table class="colleges-table">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>College Name</th>
+                            <th>Total Fees</th>
+                            <th>Avg Placement</th>
+                            <th>Highest Placement</th>
+                            <th>College Site</th>
+                        </tr>
+                    </thead>
+                    <tbody id="mbaCollegesTableBody">
+                        </tbody>
+                </table>
+            </div>
+        </div>
+        
+
+        <div class="colleges-section" id="engineeringSection">
+            <div class="section-header">
+                <h2>Top B-Tech Colleges in India</h2>
+                <span class="section-badge">150 COLLEGES</span>
+            </div>
+
+            <div class="table-container">
+                <table class="colleges-table">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>College Name</th>
+                            <th>Est. Year</th>
+                            <th>Entrance Exam</th> <th>Total Fees</th>
+                            <th>Avg Placement</th>
+                            <th>Highest Placement</th>
+                            <th>Specialization</th>
+                            <th>College Site</th>
+                        </tr>
+                    </thead>
+                    <tbody id="btechCollegesTableBody">
+                        </tbody>
+                </table>
+            </div>
+        </div>
+        
+
+        <div class="colleges-section" id="bcomSection">
+            <div class="section-header">
+                <h2>Top B.Com Colleges in India</h2>
+                <span class="section-badge" style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);">100</span>
+            </div>
+
+            <div class="table-container">
+                <table class="colleges-table">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>College Name</th>
+                            <th>Location</th>
+                            <th>Entrance Exam</th>
+                            <th>Est. Fees</th>
+                            <th>Avg Placement</th>
+                            <th>Highest Placement</th>
+                            <th>Specialization</th>
+                            <th>College Site</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bcomCollegesTableBody">
+                        </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="colleges-section" id="bbaSection">
+            <div class="section-header">
+                <h2>Top BBA/IPM Colleges in India</h2>
+                <span class="section-badge" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">MANAGEMENT</span>
+            </div>
+
+            <div class="table-container">
+                <table class="colleges-table">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>College Name</th>
+                            <th>Location</th>
+                            <th>Entrance Exam</th>
+                            <th>Est. Fees</th>
+                            <th>Avg Placement</th>
+                            <th>Highest Placement</th>
+                            <th>Specialization</th>
+                            <th>College Site</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bbaCollegesTableBody">
+                        </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="colleges-section" id="mbbsSection">
+            <div class="section-header">
+                <h2>Top MBBS Colleges in India</h2>
+                <span class="section-badge" style="background: linear-gradient(135deg, #059669 0%, #047857 100%);">MEDICAL</span>
+            </div>
+
+            <div class="table-container">
+                <table class="colleges-table">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>College Name</th>
+                            <th>Location</th>
+                            <th>Entrance Exam</th>
+                            <th>Total Fees (5.5y)</th>
+                            <th>Avg Package</th>
+                            <th>Highest Package</th>
+                            <th>Type</th>
+                            <th>College Site</th>
+                        </tr>
+                    </thead>
+                    <tbody id="mbbsCollegesTableBody">
+                        </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Add placeholders for other sections if needed or keep structure simple -->
+    </section>
+
+    <footer class="site-footer">
+        <div class="footer-top">
+            <div class="footer-col brand">
+                <h3>Safarnamastudy<span>.in</span></h3>
+                <p>Safarnama is a comprehensive platform to help students discover the right colleges and courses across India.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Medical</h4>
+                <a href="#mbbsSection">MBBS Colleges</a>
+                <a href="#mbbsSection">AIIMS Colleges</a>
+                <a href="#mbbsSection">Medical Colleges in India</a>
+            </div>
+            <div class="footer-col">
+                <h4>Engineering</h4>
+                <a href="#engineeringSection">IIT Colleges</a>
+                <a href="#engineeringSection">NIT Colleges</a>
+                <a href="#engineeringSection">Top Engineering Colleges</a>
+            </div>
+            <div class="footer-col">
+                <h4>MBA</h4>
+                <a href="#mbaSection">MBA Colleges in India</a>
+                <a href="#mbaSection">Top MBA Colleges</a>
+                <a href="#mbaSection">MBA Specializations</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <a href="about.html">About Us</a>
+            <span class="separator">|</span>
+            <a href="contact.html">Contact Us</a>
+            <span class="separator">|</span>
+            <a href="terms.html">Terms & Conditions</a>
+            <span class="separator">|</span>
+            <a href="disclaimer.html">Disclaimer</a>
+        </div>
+        <div class="footer-copyright">
+            © 2026 Safarnamastudy.in — All Rights Reserved
+        </div>
+    </footer>
+
+    <script src="colleges_data.js"></script>
+    <script src="colleges.js"></script>
+    
+    
+<script src="auth-ui.js?v=20260206e"></script>
+</body>
+</html>
+
+
+
+

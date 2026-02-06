@@ -1,0 +1,789 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SafarEasy - Image Enhancer 4K</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <style>
+      :root {
+        --bg1: #030712;
+        --bg2: #0f172a;
+        --bg3: #1e293b;
+        --panel: rgba(15, 23, 42, 0.84);
+        --border: rgba(148, 163, 184, 0.24);
+        --txt: #f8fafc;
+        --soft: #cbd5e1;
+        --muted: #94a3b8;
+      }
+
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+
+      body {
+        min-height: 100vh;
+        font-family: "Outfit", sans-serif;
+        color: var(--txt);
+        background:
+          radial-gradient(circle at 14% 22%, rgba(168, 85, 247, 0.16), transparent 36%),
+          radial-gradient(circle at 88% 92%, rgba(59, 130, 246, 0.14), transparent 42%),
+          linear-gradient(145deg, var(--bg1), var(--bg2) 45%, var(--bg3));
+      }
+
+      .top-bar {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 18px;
+        border-bottom: 1px solid var(--border);
+        background: rgba(2, 6, 23, 0.84);
+        backdrop-filter: blur(8px);
+      }
+
+      .brand { display: inline-flex; align-items: center; gap: 8px; color: #e9d5ff; font-weight: 700; }
+      .top-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+      .nav-btn {
+        text-decoration: none;
+        color: #e2e8f0;
+        padding: 9px 14px;
+        border-radius: 999px;
+        border: 1px solid rgba(148, 163, 184, 0.3);
+        background: rgba(15, 23, 42, 0.72);
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .page { width: min(1240px, calc(100% - 28px)); margin: 22px auto 30px; }
+
+      .hero {
+        border: 1px solid var(--border);
+        background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(51, 65, 85, 0.74));
+        border-radius: 20px;
+        padding: 22px;
+        margin-bottom: 16px;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 7px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(192, 132, 252, 0.45);
+        background: rgba(168, 85, 247, 0.16);
+        color: #e9d5ff;
+        font-size: 13px;
+        font-weight: 700;
+        margin-bottom: 12px;
+      }
+
+      .hero h1 { font-size: 32px; margin-bottom: 8px; }
+      .hero p { color: var(--soft); line-height: 1.6; font-size: 15px; }
+
+      .layout { display: grid; grid-template-columns: 1.02fr 0.98fr; gap: 16px; }
+
+      .panel {
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        background: var(--panel);
+        padding: 18px;
+      }
+
+      .panel h2 { font-size: 18px; margin-bottom: 14px; }
+
+      .uploader {
+        border: 1px dashed rgba(148, 163, 184, 0.38);
+        border-radius: 14px;
+        padding: 22px;
+        text-align: center;
+        background: rgba(15, 23, 42, 0.6);
+        margin-bottom: 14px;
+      }
+
+      .upload-icon { font-size: 30px; color: #d8b4fe; margin-bottom: 10px; }
+      .input-file { margin-top: 10px; color: var(--soft); }
+      .upload-note { margin-top: 8px; color: var(--muted); font-size: 13px; }
+
+      .meta-list { list-style: none; display: grid; gap: 8px; }
+      .meta-list li {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        border: 1px solid rgba(148, 163, 184, 0.18);
+        border-radius: 12px;
+        padding: 9px 12px;
+        font-size: 14px;
+        color: var(--soft);
+      }
+      .meta-list strong { color: #f8fafc; font-weight: 600; }
+
+      .preview-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 14px; }
+      .preview-card {
+        border: 1px solid rgba(148, 163, 184, 0.22);
+        border-radius: 14px;
+        overflow: hidden;
+        background: rgba(2, 6, 23, 0.62);
+      }
+
+      .preview-head {
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.3px;
+        color: #ddd6fe;
+        padding: 8px 10px;
+        border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+      }
+
+      .preview-box {
+        width: 100%;
+        aspect-ratio: 1/1;
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+        background: rgba(15, 23, 42, 0.84);
+      }
+
+      .preview-box img { max-width: 100%; max-height: 100%; object-fit: contain; display: none; }
+      .preview-empty { color: var(--muted); font-size: 13px; text-align: center; padding: 14px; }
+      .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+      .field { display: grid; gap: 6px; }
+      .field label { font-size: 13px; color: var(--soft); }
+      .field input, .field select {
+        width: 100%;
+        background: rgba(15, 23, 42, 0.85);
+        border: 1px solid rgba(148, 163, 184, 0.32);
+        color: #fff;
+        padding: 9px 10px;
+        border-radius: 10px;
+        font-family: inherit;
+      }
+
+      .range-row { display: grid; grid-template-columns: 1fr 90px; gap: 10px; margin-bottom: 12px; }
+      .hint { font-size: 12px; color: var(--muted); margin-top: -4px; margin-bottom: 8px; }
+
+      .actions { display: grid; gap: 10px; }
+      .btn {
+        border: none;
+        border-radius: 11px;
+        padding: 11px 14px;
+        font-family: inherit;
+        font-size: 14px;
+        font-weight: 700;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        text-decoration: none;
+      }
+      .btn-primary { color: #3b0764; background: linear-gradient(135deg, #e9d5ff, #c084fc); }
+      .btn-muted { color: #e2e8f0; background: rgba(51, 65, 85, 0.9); border: 1px solid rgba(148, 163, 184, 0.24); }
+      .btn-secondary { color: #dbeafe; background: rgba(30, 64, 175, 0.24); border: 1px solid rgba(96, 165, 250, 0.36); }
+      .btn.disabled, .btn[disabled] { opacity: 0.45; pointer-events: none; }
+
+      .status {
+        margin-top: 12px;
+        border-radius: 12px;
+        padding: 10px 12px;
+        border: 1px solid rgba(148, 163, 184, 0.22);
+        background: rgba(15, 23, 42, 0.68);
+        color: var(--soft);
+        font-size: 13px;
+        line-height: 1.6;
+      }
+      .status.success { border-color: rgba(16, 185, 129, 0.44); color: #a7f3d0; background: rgba(6, 78, 59, 0.35); }
+      .status.error { border-color: rgba(239, 68, 68, 0.45); color: #fecaca; background: rgba(127, 29, 29, 0.36); }
+      .small-note { margin-top: 10px; font-size: 12px; color: var(--muted); }
+
+      .mini-copyright {
+        margin: 10px auto 18px;
+        width: 100%;
+        background: transparent;
+        color: #cbd5e1;
+        font-size: 13px;
+        padding: 0 14px;
+        text-align: center;
+      }
+
+      .loading-overlay {
+        position: fixed;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        padding: 20px;
+        background: rgba(2, 6, 23, 0.78);
+        backdrop-filter: blur(10px);
+        z-index: 9999;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.28s ease, visibility 0.28s ease;
+      }
+      .loading-overlay.active { opacity: 1; visibility: visible; pointer-events: auto; }
+
+      .loading-card {
+        width: min(520px, 100%);
+        border-radius: 20px;
+        border: 1px solid rgba(148, 163, 184, 0.32);
+        background: linear-gradient(145deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.88));
+        box-shadow: 0 22px 56px rgba(2, 6, 23, 0.58);
+        padding: 22px 20px;
+        text-align: center;
+      }
+      .loading-title { font-size: 21px; font-weight: 800; margin-bottom: 8px; }
+      .loading-subtitle { font-size: 14px; color: var(--soft); margin-bottom: 14px; }
+      .try-ai-loader {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 92px;
+        height: 92px;
+        background: rgba(139, 92, 246, 0.15);
+        border: 1.5px solid rgba(167, 139, 250, 0.4);
+        border-radius: 50%;
+        box-shadow: 0 8px 32px rgba(139, 92, 246, 0.25);
+        overflow: hidden;
+      }
+      .ai-btn-glow {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(167, 139, 250, 0.42) 0%, transparent 70%);
+        animation: pulseGlow 3s ease-in-out infinite;
+      }
+      .ai-logo { width: 34px; height: 34px; position: relative; z-index: 2; animation: sparkle 3.5s ease-in-out infinite; }
+      @keyframes pulseGlow { 0%,100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1);} 50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1);} }
+      @keyframes sparkle { 0%,100% { transform: scale(1) rotate(0deg);} 25% { transform: scale(1.25) rotate(12deg);} 75% { transform: scale(1.2) rotate(-10deg);} }
+
+      @media (max-width: 1000px) { .layout { grid-template-columns: 1fr; } }
+      @media (max-width: 680px) {
+        .page { width: calc(100% - 18px); margin-top: 16px; }
+        .hero h1 { font-size: 27px; }
+        .grid, .preview-wrap, .range-row { grid-template-columns: 1fr; }
+        .top-bar { flex-direction: column; align-items: flex-start; }
+        .top-actions { width: 100%; }
+        .nav-btn { flex: 1; text-align: center; }
+        .loading-title { font-size: 18px; }
+        .try-ai-loader { width: 84px; height: 84px; }
+        .mini-copyright { margin: 8px auto 14px; font-size: 12px; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="top-bar">
+      <div class="brand"><i class="fa-solid fa-wand-magic-sparkles"></i> SafarEasy Image Enhancer</div>
+      <div class="top-actions">
+        <a href="safareasy-apps.html" class="nav-btn">Back to Apps</a>
+        <a href="index.html" class="nav-btn">Home</a>
+      </div>
+    </header>
+
+    <main class="page">
+      <section class="hero">
+        <div class="badge"><i class="fa-solid fa-bolt"></i> AI Style Premium Boost</div>
+        <h1>Enhance Image Quality up to 4K</h1>
+        <p>Image ko sharper, cleaner aur vibrant banayein. 4K smart upscale ke sath output download karein.</p>
+      </section>
+
+      <section class="layout">
+        <div class="panel">
+          <h2>1) Upload and Preview</h2>
+          <div class="uploader">
+            <div class="upload-icon"><i class="fa-regular fa-image"></i></div>
+            <div>Select image from your device</div>
+            <input id="imageInput" class="input-file" type="file" accept="image/*" />
+            <div class="upload-note">Supports JPG, PNG, WEBP, BMP</div>
+          </div>
+
+          <ul class="meta-list">
+            <li><span>File Name</span> <strong id="metaName">-</strong></li>
+            <li><span>Original Size</span> <strong id="metaSize">-</strong></li>
+            <li><span>Original Dimensions</span> <strong id="metaDimensions">-</strong></li>
+          </ul>
+
+          <div class="preview-wrap">
+            <div class="preview-card">
+              <div class="preview-head">ORIGINAL</div>
+              <div class="preview-box">
+                <img id="originalPreview" alt="Original preview" />
+                <div id="originalEmpty" class="preview-empty">No image selected</div>
+              </div>
+            </div>
+            <div class="preview-card">
+              <div class="preview-head">ENHANCED</div>
+              <div class="preview-box">
+                <img id="enhancedPreview" alt="Enhanced preview" />
+                <div id="enhancedEmpty" class="preview-empty">Enhanced output will appear here</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel">
+          <h2>2) Enhancement Controls</h2>
+
+          <div class="grid">
+            <div class="field">
+              <label for="presetSelect">Enhancement Preset</label>
+              <select id="presetSelect">
+                <option value="wow" selected>WOW Boost (Recommended)</option>
+                <option value="natural">Natural Look</option>
+                <option value="cinematic">Cinematic Contrast</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="upscaleSelect">Output Resolution</label>
+              <select id="upscaleSelect">
+                <option value="orig">Keep Original</option>
+                <option value="2k">Upscale to 2K</option>
+                <option value="4k" selected>Upscale to 4K</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="strengthRange">Enhancement Strength (%)</label>
+            <div class="range-row">
+              <input id="strengthRange" type="range" min="0" max="100" value="78" />
+              <input id="strengthInput" type="number" min="0" max="100" value="78" />
+            </div>
+            <div class="hint">Higher strength gives stronger punch and clarity.</div>
+          </div>
+
+          <div class="field">
+            <label for="sharpRange">Sharpness (%)</label>
+            <div class="range-row">
+              <input id="sharpRange" type="range" min="0" max="100" value="72" />
+              <input id="sharpInput" type="number" min="0" max="100" value="72" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="denoiseRange">Denoise (%)</label>
+            <div class="range-row">
+              <input id="denoiseRange" type="range" min="0" max="100" value="28" />
+              <input id="denoiseInput" type="number" min="0" max="100" value="28" />
+            </div>
+          </div>
+
+          <div class="grid">
+            <div class="field">
+              <label for="formatSelect">Output Format</label>
+              <select id="formatSelect">
+                <option value="image/jpeg" selected>JPEG</option>
+                <option value="image/webp">WEBP</option>
+                <option value="image/png">PNG</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="qualityInput">File Quality (%)</label>
+              <input id="qualityInput" type="number" min="60" max="100" value="94" />
+            </div>
+          </div>
+
+          <div class="actions">
+            <button id="enhanceBtn" type="button" class="btn btn-primary"><i class="fa-solid fa-wand-magic-sparkles"></i> Enhance to 4K Quality</button>
+            <button id="resetBtn" type="button" class="btn btn-muted"><i class="fa-solid fa-rotate-left"></i> Reset Controls</button>
+            <a id="downloadBtn" class="btn btn-secondary disabled" href="#" download aria-disabled="true"><i class="fa-solid fa-download"></i> Download Enhanced Image</a>
+          </div>
+
+          <ul class="meta-list" style="margin-top:12px;">
+            <li><span>Enhanced Size</span> <strong id="resultSize">-</strong></li>
+            <li><span>Enhanced Dimensions</span> <strong id="resultDim">-</strong></li>
+            <li><span>Applied Upscale</span> <strong id="resultUpscale">-</strong></li>
+          </ul>
+
+          <div id="statusBox" class="status">Image upload karein aur Enhance button click karein.</div>
+          <div class="small-note">Tip: WOW preset + 4K gives the most impressive first look.</div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="mini-copyright">&copy; 2026 Safarnama. All Rights Reserved.</footer>
+
+    <div id="loadingOverlay" class="loading-overlay" aria-hidden="true" aria-live="polite">
+      <div class="loading-card">
+        <div class="loading-title">Enhancing Your Image</div>
+        <div class="loading-subtitle">Safarnama AI 4K enhancement is running...</div>
+        <div class="try-ai-loader" role="status">
+          <div class="ai-btn-glow"></div>
+          <img src="images/ailogo.png" class="ai-logo" alt="AI" />
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (() => {
+        const imageInput = document.getElementById("imageInput");
+        const presetSelect = document.getElementById("presetSelect");
+        const upscaleSelect = document.getElementById("upscaleSelect");
+        const strengthRange = document.getElementById("strengthRange");
+        const strengthInput = document.getElementById("strengthInput");
+        const sharpRange = document.getElementById("sharpRange");
+        const sharpInput = document.getElementById("sharpInput");
+        const denoiseRange = document.getElementById("denoiseRange");
+        const denoiseInput = document.getElementById("denoiseInput");
+        const formatSelect = document.getElementById("formatSelect");
+        const qualityInput = document.getElementById("qualityInput");
+        const enhanceBtn = document.getElementById("enhanceBtn");
+        const resetBtn = document.getElementById("resetBtn");
+        const downloadBtn = document.getElementById("downloadBtn");
+        const loadingOverlay = document.getElementById("loadingOverlay");
+        const statusBox = document.getElementById("statusBox");
+        const originalPreview = document.getElementById("originalPreview");
+        const enhancedPreview = document.getElementById("enhancedPreview");
+        const originalEmpty = document.getElementById("originalEmpty");
+        const enhancedEmpty = document.getElementById("enhancedEmpty");
+        const metaName = document.getElementById("metaName");
+        const metaSize = document.getElementById("metaSize");
+        const metaDimensions = document.getElementById("metaDimensions");
+        const resultSize = document.getElementById("resultSize");
+        const resultDim = document.getElementById("resultDim");
+        const resultUpscale = document.getElementById("resultUpscale");
+
+        const state = { file: null, image: null, originalUrl: "", outputUrl: "", originalWidth: 0, originalHeight: 0 };
+        const presets = {
+          wow: { b: 1.04, c: 1.16, s: 1.2, sharp: 1.28, denoise: 0.32, vib: 0.22 },
+          natural: { b: 1.02, c: 1.08, s: 1.08, sharp: 1.06, denoise: 0.4, vib: 0.12 },
+          cinematic: { b: 1.01, c: 1.2, s: 1.12, sharp: 1.2, denoise: 0.26, vib: 0.18 }
+        };
+
+        function wait(ms) { return new Promise((r) => setTimeout(r, ms)); }
+        function setLoading(active) {
+          if (!loadingOverlay) return;
+          if (active) {
+            loadingOverlay.classList.add("active");
+            loadingOverlay.setAttribute("aria-hidden", "false");
+          } else {
+            loadingOverlay.classList.remove("active");
+            loadingOverlay.setAttribute("aria-hidden", "true");
+          }
+        }
+        function setStatus(message, type) {
+          statusBox.textContent = message;
+          statusBox.classList.remove("success", "error");
+          if (type === "success") statusBox.classList.add("success");
+          if (type === "error") statusBox.classList.add("error");
+        }
+        function formatBytes(bytes) {
+          if (!Number.isFinite(bytes) || bytes < 0) return "-";
+          if (bytes < 1024) return bytes + " B";
+          const units = ["KB", "MB", "GB"];
+          let val = bytes / 1024;
+          let idx = 0;
+          while (val >= 1024 && idx < units.length - 1) { val /= 1024; idx += 1; }
+          return val.toFixed(2) + " " + units[idx];
+        }
+        function clamp(value, min, max, fallback) {
+          const n = Number(value);
+          if (!Number.isFinite(n)) return fallback;
+          return Math.min(max, Math.max(min, n));
+        }
+        function bindPair(rangeEl, inputEl, min, max, fallback) {
+          rangeEl.addEventListener("input", () => {
+            const v = clamp(rangeEl.value, min, max, fallback);
+            rangeEl.value = String(Math.round(v));
+            inputEl.value = String(Math.round(v));
+          });
+          inputEl.addEventListener("input", () => {
+            const v = clamp(inputEl.value, min, max, fallback);
+            inputEl.value = String(Math.round(v));
+            rangeEl.value = String(Math.round(v));
+          });
+        }
+        function clearOutput() {
+          if (state.outputUrl) {
+            URL.revokeObjectURL(state.outputUrl);
+            state.outputUrl = "";
+          }
+          enhancedPreview.removeAttribute("src");
+          enhancedPreview.style.display = "none";
+          enhancedEmpty.style.display = "block";
+          downloadBtn.classList.add("disabled");
+          downloadBtn.setAttribute("aria-disabled", "true");
+          downloadBtn.setAttribute("href", "#");
+          resultSize.textContent = "-";
+          resultDim.textContent = "-";
+          resultUpscale.textContent = "-";
+        }
+
+        function getTargetDimensions(origW, origH, mode) {
+          const longSide = Math.max(origW, origH);
+          if (mode === "orig") return { width: origW, height: origH, label: "Original" };
+          const targetLong = mode === "2k" ? Math.max(longSide, 2560) : Math.max(longSide, 3840);
+          const scale = targetLong / longSide;
+          return {
+            width: Math.max(1, Math.round(origW * scale)),
+            height: Math.max(1, Math.round(origH * scale)),
+            label: mode === "2k" ? "2K Smart Upscale" : "4K Smart Upscale"
+          };
+        }
+
+        function createCanvas(w, h) {
+          const c = document.createElement("canvas");
+          c.width = w;
+          c.height = h;
+          return c;
+        }
+
+        function drawHQ(source, canvas, width, height) {
+          const ctx = canvas.getContext("2d");
+          if (!ctx) throw new Error("Canvas context unavailable");
+          ctx.clearRect(0, 0, width, height);
+          ctx.imageSmoothingEnabled = true;
+          ctx.imageSmoothingQuality = "high";
+          ctx.drawImage(source, 0, 0, width, height);
+        }
+
+        function progressiveScale(image, targetW, targetH) {
+          let current = createCanvas(image.naturalWidth, image.naturalHeight);
+          drawHQ(image, current, image.naturalWidth, image.naturalHeight);
+          while (current.width < targetW || current.height < targetH) {
+            const nextW = Math.min(targetW, Math.round(current.width * 1.45));
+            const nextH = Math.min(targetH, Math.round(current.height * 1.45));
+            const next = createCanvas(nextW, nextH);
+            drawHQ(current, next, nextW, nextH);
+            current = next;
+          }
+          if (current.width !== targetW || current.height !== targetH) {
+            const finalCanvas = createCanvas(targetW, targetH);
+            drawHQ(current, finalCanvas, targetW, targetH);
+            return finalCanvas;
+          }
+          return current;
+        }
+
+        function applyBaseFilter(canvas, brightness, contrast, saturate) {
+          const out = createCanvas(canvas.width, canvas.height);
+          const ctx = out.getContext("2d");
+          ctx.filter = `brightness(${brightness}) contrast(${contrast}) saturate(${saturate})`;
+          ctx.drawImage(canvas, 0, 0);
+          ctx.filter = "none";
+          return out;
+        }
+
+        function applyDenoise(canvas, denoisePct, preset) {
+          const amount = Math.max(0, Math.min(1, denoisePct / 100));
+          if (amount <= 0.01) return canvas;
+          const blurCanvas = createCanvas(canvas.width, canvas.height);
+          const bctx = blurCanvas.getContext("2d");
+          bctx.filter = `blur(${Math.max(0.25, amount * 1.7)}px)`;
+          bctx.drawImage(canvas, 0, 0);
+          bctx.filter = "none";
+
+          const out = createCanvas(canvas.width, canvas.height);
+          const octx = out.getContext("2d");
+          octx.drawImage(canvas, 0, 0);
+          octx.globalAlpha = Math.min(0.6, amount * preset.denoise);
+          octx.drawImage(blurCanvas, 0, 0);
+          octx.globalAlpha = 1;
+          return out;
+        }
+
+        function applyUnsharp(canvas, sharpPct, preset) {
+          const amountPct = Math.max(0, Math.min(1, sharpPct / 100));
+          if (amountPct <= 0.01) return canvas;
+
+          const blurCanvas = createCanvas(canvas.width, canvas.height);
+          const bctx = blurCanvas.getContext("2d");
+          bctx.filter = `blur(${1 + amountPct * 1.1}px)`;
+          bctx.drawImage(canvas, 0, 0);
+          bctx.filter = "none";
+
+          const sctx = canvas.getContext("2d");
+          const src = sctx.getImageData(0, 0, canvas.width, canvas.height);
+          const blur = bctx.getImageData(0, 0, blurCanvas.width, blurCanvas.height);
+          const out = createCanvas(canvas.width, canvas.height);
+          const octx = out.getContext("2d");
+          const data = octx.createImageData(canvas.width, canvas.height);
+          const gain = (0.55 + amountPct * 1.25) * preset.sharp;
+
+          for (let i = 0; i < src.data.length; i += 4) {
+            data.data[i] = Math.max(0, Math.min(255, Math.round(src.data[i] + gain * (src.data[i] - blur.data[i]))));
+            data.data[i + 1] = Math.max(0, Math.min(255, Math.round(src.data[i + 1] + gain * (src.data[i + 1] - blur.data[i + 1]))));
+            data.data[i + 2] = Math.max(0, Math.min(255, Math.round(src.data[i + 2] + gain * (src.data[i + 2] - blur.data[i + 2]))));
+            data.data[i + 3] = src.data[i + 3];
+          }
+          octx.putImageData(data, 0, 0);
+          return out;
+        }
+
+        function applyVibrance(canvas, vibranceAmt) {
+          if (vibranceAmt <= 0.01) return canvas;
+          const ctx = canvas.getContext("2d");
+          const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+          const d = imageData.data;
+          for (let i = 0; i < d.length; i += 4) {
+            const r = d[i], g = d[i + 1], b = d[i + 2];
+            const max = Math.max(r, g, b);
+            const avg = (r + g + b) / 3;
+            const amt = (Math.abs(max - avg) / 255) * vibranceAmt;
+            d[i] = Math.max(0, Math.min(255, Math.round(r + (max - r) * amt)));
+            d[i + 1] = Math.max(0, Math.min(255, Math.round(g + (max - g) * amt)));
+            d[i + 2] = Math.max(0, Math.min(255, Math.round(b + (max - b) * amt)));
+          }
+          ctx.putImageData(imageData, 0, 0);
+          return canvas;
+        }
+
+        async function canvasToBlob(canvas, mimeType, qualityPct) {
+          const q = Math.max(0.6, Math.min(1, qualityPct / 100));
+          return new Promise((resolve, reject) => {
+            canvas.toBlob((blob) => {
+              if (!blob) {
+                reject(new Error("Output generation failed"));
+                return;
+              }
+              resolve(blob);
+            }, mimeType, q);
+          });
+        }
+
+        function outputFileName(originalName, mimeType) {
+          const base = String(originalName || "image").replace(/\.[^.]+$/, "").replace(/[^a-zA-Z0-9-_]/g, "-");
+          const ext = mimeType === "image/png" ? "png" : mimeType === "image/webp" ? "webp" : "jpg";
+          return base + "-enhanced." + ext;
+        }
+
+        function handleFile(file) {
+          clearOutput();
+          if (!file) return;
+          if (!file.type || !file.type.startsWith("image/")) {
+            setStatus("Please choose a valid image file.", "error");
+            return;
+          }
+
+          if (state.originalUrl) {
+            URL.revokeObjectURL(state.originalUrl);
+            state.originalUrl = "";
+          }
+
+          state.file = file;
+          state.originalUrl = URL.createObjectURL(file);
+          const img = new Image();
+          img.onload = () => {
+            state.image = img;
+            state.originalWidth = img.naturalWidth;
+            state.originalHeight = img.naturalHeight;
+            originalPreview.src = state.originalUrl;
+            originalPreview.style.display = "block";
+            originalEmpty.style.display = "none";
+            metaName.textContent = file.name;
+            metaSize.textContent = formatBytes(file.size);
+            metaDimensions.textContent = `${img.naturalWidth} x ${img.naturalHeight} px`;
+            setStatus("Image loaded. Press Enhance for premium output.", "success");
+          };
+          img.onerror = () => setStatus("Image could not be loaded. Try another file.", "error");
+          img.src = state.originalUrl;
+        }
+
+        async function enhanceImage() {
+          if (!state.file || !state.image) {
+            setStatus("Please select an image first.", "error");
+            return;
+          }
+
+          const preset = presets[presetSelect.value] || presets.wow;
+          const strength = clamp(strengthRange.value, 0, 100, 78);
+          const sharp = clamp(sharpRange.value, 0, 100, 72);
+          const denoise = clamp(denoiseRange.value, 0, 100, 28);
+          const q = clamp(qualityInput.value, 60, 100, 94);
+          const mimeType = formatSelect.value || "image/jpeg";
+          const target = getTargetDimensions(state.originalWidth, state.originalHeight, upscaleSelect.value);
+
+          strengthRange.value = strengthInput.value = String(Math.round(strength));
+          sharpRange.value = sharpInput.value = String(Math.round(sharp));
+          denoiseRange.value = denoiseInput.value = String(Math.round(denoise));
+          qualityInput.value = String(Math.round(q));
+
+          enhanceBtn.disabled = true;
+          setStatus("Enhancement in progress...", "");
+          setLoading(true);
+          const start = Date.now();
+
+          try {
+            const strengthFactor = strength / 100;
+            const brightness = 1 + (preset.b - 1) * (0.65 + strengthFactor * 0.7);
+            const contrast = 1 + (preset.c - 1) * (0.65 + strengthFactor * 0.8);
+            const saturate = 1 + (preset.s - 1) * (0.65 + strengthFactor * 0.85);
+
+            let canvas = progressiveScale(state.image, target.width, target.height);
+            canvas = applyBaseFilter(canvas, brightness, contrast, saturate);
+            canvas = applyDenoise(canvas, denoise, preset);
+            canvas = applyUnsharp(canvas, sharp, preset);
+            canvas = applyVibrance(canvas, preset.vib * strengthFactor);
+
+            const blob = await canvasToBlob(canvas, mimeType, q);
+
+            clearOutput();
+            state.outputUrl = URL.createObjectURL(blob);
+            enhancedPreview.src = state.outputUrl;
+            enhancedPreview.style.display = "block";
+            enhancedEmpty.style.display = "none";
+
+            downloadBtn.href = state.outputUrl;
+            downloadBtn.download = outputFileName(state.file.name, mimeType);
+            downloadBtn.classList.remove("disabled");
+            downloadBtn.setAttribute("aria-disabled", "false");
+
+            resultSize.textContent = formatBytes(blob.size);
+            resultDim.textContent = `${canvas.width} x ${canvas.height} px`;
+            resultUpscale.textContent = target.label;
+
+            const elapsed = Date.now() - start;
+            if (elapsed < 2200) await wait(2200 - elapsed);
+
+            setStatus("Enhancement complete. Preview check karein aur download karein.", "success");
+          } catch (error) {
+            const elapsed = Date.now() - start;
+            if (elapsed < 1200) await wait(1200 - elapsed);
+            setStatus("Enhancement failed. Try another image or lower settings.", "error");
+          } finally {
+            enhanceBtn.disabled = false;
+            setLoading(false);
+          }
+        }
+
+        function resetControls() {
+          presetSelect.value = "wow";
+          upscaleSelect.value = "4k";
+          strengthRange.value = strengthInput.value = "78";
+          sharpRange.value = sharpInput.value = "72";
+          denoiseRange.value = denoiseInput.value = "28";
+          formatSelect.value = "image/jpeg";
+          qualityInput.value = "94";
+          setStatus("Controls reset to recommended values.", "success");
+        }
+
+        bindPair(strengthRange, strengthInput, 0, 100, 78);
+        bindPair(sharpRange, sharpInput, 0, 100, 72);
+        bindPair(denoiseRange, denoiseInput, 0, 100, 28);
+
+        imageInput.addEventListener("change", (e) => handleFile(e.target.files && e.target.files[0] ? e.target.files[0] : null));
+        enhanceBtn.addEventListener("click", enhanceImage);
+        resetBtn.addEventListener("click", resetControls);
+
+        window.addEventListener("beforeunload", () => {
+          if (state.originalUrl) URL.revokeObjectURL(state.originalUrl);
+          if (state.outputUrl) URL.revokeObjectURL(state.outputUrl);
+        });
+      })();
+    </script>
+  <script src="auth-ui.js?v=20260206e"></script>
+</body>
+</html>
+
+
+
+

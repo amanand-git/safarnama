@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Latest Education Articles - Safarnama</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="articles.css">
+</head>
+<body>
+  <div class="page-backdrop" aria-hidden="true">
+    <span class="orb orb-a"></span>
+    <span class="orb orb-b"></span>
+    <span class="orb orb-c"></span>
+  </div>
+
+  <header class="site-header">
+    <a href="index.html" class="brand">
+      <img src="images/logo.png" alt="Safarnama">
+    </a>
+    <nav class="header-nav">
+      <a href="index.html">Home</a>
+      <a href="courses.html">Courses</a>
+      <a href="colleges.html">Colleges</a>
+      <a href="articles.html" class="active">Articles</a>
+    </nav>
+  </header>
+
+  <main class="main-wrap">
+    <section class="hero">
+      <p class="eyebrow">Safarnama Newsroom</p>
+      <h1>50 Latest Education, College & Exam Articles</h1>
+      <p class="hero-text">Fresh updates from trusted publishers, arranged for fast scanning. Use search and category filters to find what matters to you.</p>
+
+      <div class="hero-metrics">
+        <article class="metric-card">
+          <p class="metric-label">Total Articles</p>
+          <p class="metric-value" id="totalArticles">0</p>
+        </article>
+        <article class="metric-card">
+          <p class="metric-label">Filtered Results</p>
+          <p class="metric-value" id="filteredArticles">0</p>
+        </article>
+        <article class="metric-card">
+          <p class="metric-label">Last Refresh</p>
+          <p class="metric-value metric-small" id="lastRefresh">--</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="controls-section">
+      <div class="search-shell">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.3-4.3"></path>
+        </svg>
+        <input type="text" id="articleSearch" placeholder="Search by title, source, category...">
+      </div>
+
+      <div class="chip-row" id="categoryChips">
+        <button class="chip active" data-category="all">All</button>
+      </div>
+    </section>
+
+    <section class="articles-section">
+      <div class="articles-grid" id="articlesGrid"></div>
+      <p class="empty-state hidden" id="emptyState">No articles match your filter. Try another category or keyword.</p>
+      <div class="load-wrap">
+        <button id="loadMoreBtn" class="load-more-btn">Load More Articles</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-links">
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact Us</a>
+      <a href="disclaimer.html">Disclaimer</a>
+    </div>
+    <p class="copyright">2026 Safarnama. All Rights Reserved.</p>
+  </footer>
+
+  <script src="articles_data.js?v=20260206"></script>
+  <script src="articles.js?v=20260206"></script>
+<script src="auth-ui.js?v=20260206e"></script>
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses | Safarnama</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* HEADER */
+        .top-header {
+            background: rgba(255, 245, 235, 0.85); /* Shaded Orange Glass */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 165, 0, 0.1);
+            box-shadow: 0 4px 30px rgba(255, 140, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-inner {
+            /* Full width matching index.html */
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        .mobile-go-home {
+            display: none;
+        }
+
+        /* Search & Categories Container */
+        .search-area {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex: 1;
+            max-width: 600px;
+            /* Removed margin-left to align better */
+        }
+        
+        /* Removed Dropdown CSS */
+
+        /* Search Input */
+        /* Search Input Container with Animated Gradient Border */
+        .search-bar {
+            flex: 1;
+            position: relative;
+            border-radius: 50px;
+            padding: 3px; /* Width of the animated border */
+            background: linear-gradient(60deg, #ffecd2, #fcb69f, #ff9a9e, #fecfef);
+            background-size: 300% 300%;
+            animation: borderAnimation 4s ease infinite;
+            box-shadow: 0 5px 15px rgba(255, 100, 50, 0.15); /* Soft warming glow */
+        }
+
+        @keyframes borderAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Input sits on top of the animated background */
+        .search-bar input {
+            width: 100%;
+            padding: 10px 20px 10px 45px; /* Adjusted text padding */
+            border: none; /* Remove default border */
+            background: rgba(255, 255, 255, 0.95); /* Nearly opaque white */
+            border-radius: 46px; /* Slightly less than container */
+            font-size: 15px;
+            outline: none;
+            transition: all 0.3s;
+            color: #333;
+            height: 100%;
+            display: block;
+        }
+
+        .search-bar input:focus {
+            background: white;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.05); /* Inner shadow for depth */
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 20px; /* Adjusted for padding */
+            top: 50%;
+            transform: translateY(-50%);
+            color: #ff8c00; /* Orange icon to match */
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        /* MAIN SECTION (Purple Gradient) */
+        .courses-section {
+            flex: 1;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Background Effects */
+        .courses-section::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            top: -100px;
+            left: -100px;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .courses-section::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            bottom: -50px;
+            right: -50px;
+            animation: float2 10s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(20px) rotate(10deg); }
+        }
+        @keyframes float2 {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-30px) scale(1.1); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* PILLS */
+        .pills-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 50px;
+        }
+
+        .pill {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            padding: 10px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .pill:hover, .pill.active {
+            background: white;
+            color: #2c5aa0;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* COURSE GRID */
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .course-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 250px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        .course-card:hover::before {
+            left: 100%;
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Make placeholder image area */
+        .card-img-placeholder {
+            width: 180px;
+            height: 120px;
+            background: rgba(255, 255, 255, 0.2);
+            margin-bottom: 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 30px;
+        }
+
+        .course-card h3 {
+            font-size: 24px;
+            color: white;
+            margin-bottom: 0; /* Removed margin since description is gone */
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .course-card p {
+            font-size: 16px;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .go-home {
+            width: 100%;
+            margin: 20px 0;
+            padding: 0 30px;
+        }
+
+        .go-home a {
+            color: #2c5aa0;
+            text-decoration: none;
+            font-size: 16px;
+            transition: transform 0.3s;
+            display: inline-block;
+        }
+
+        .go-home a:hover {
+            transform: translateX(-5px);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .header-inner {
+                flex-direction: column;
+                gap: 20px;
+                align-items: flex-start; /* Logo Left */
+            }
+            .category-dropdown {
+                display: none; /* Hide Categories */
+            }
+            .search-area {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            /* Show Mobile Go Home in Header */
+            .mobile-go-home {
+                display: block;
+                position: absolute;
+                top: 25px; /* Align with Logo */
+                right: 20px;
+                color: #2c5aa0;
+                text-decoration: none;
+                font-weight: 600;
+                font-size: 15px;
+            }
+
+            /* Hide Section Go Home */
+            .courses-section .go-home {
+                display: none !important;
+            }
+
+            .course-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 15px;
+            }
+            .course-card {
+                padding: 20px;
+                min-height: 180px;
+            }
+            .course-card h3 {
+                font-size: 18px;
+            }
+            .card-img-placeholder {
+                width: 100%;
+                height: 80px;
+            }
+
+            /* Scrollable Pills for Mobile */
+            .pills-container {
+                justify-content: flex-start;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                padding-bottom: 10px;
+                margin-top: 30px; /* Push down */
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none; /* Hide scrollbar Firefox */
+            }
+            .pills-container::-webkit-scrollbar { 
+                display: none; /* Hide scrollbar Chrome/Safari/Opera */
+            }
+            .pill {
+                flex: 0 0 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="top-header">
+        <div class="header-inner">
+            <div class="logo">
+                <img src="images/logo.png" alt="Safarnama">
+            </div>
+
+            <a href="index.html" class="mobile-go-home">Go to Home</a>
+
+            <div class="search-area">
+                <!-- Categories removed -->
+
+                <div class="search-bar">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="searchInput" placeholder="Search courses...">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- COURSES SECTION -->
+    <section class="courses-section">
+        <div class="container">
+            <div class="go-home" style="padding-left: 0; margin-bottom: 20px;">
+                 <a href="index.html" style="color: white;">← Go to Home</a>
+            </div>
+
+            <!-- Filter Pills -->
+            <div class="pills-container">
+                <button class="pill active" data-filter="all">All</button>
+                <button class="pill" data-filter="Engineering">B.Tech</button>
+                <button class="pill" data-filter="Management">MBA</button>
+                <button class="pill" data-filter="Medical">MBBS</button>
+                <button class="pill" data-filter="Commerce">B.Com</button>
+                <button class="pill" data-filter="IT">Data Science</button>
+                <button class="pill" data-filter="Agriculture">Agriculture</button>
+            </div>
+
+            <!-- Decorative Button -->
+            <div style="text-align: center; margin-bottom: 25px;">
+                <button style="background: #2c5aa0; color: white; border: none; padding: 12px 30px; border-radius: 50px; font-weight: 600; font-size: 16px; cursor: default; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+                    Popular Courses
+                </button>
+            </div>
+
+            <!-- Grid -->
+            <div class="course-grid" id="courseGrid">
+                <!-- Cards will be injected here via JS -->
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Course Data
+        const courses = [
+            { code: "MBA", name: "MBA" },
+            { code: "BTech", name: "B.Tech" },
+            { code: "MBBS", name: "MBBS" },
+            { code: "BCom", name: "B.Com" },
+            { code: "SQL", name: "SQL for Data Analysis" },
+            { code: "BCA", name: "BCA" },
+            { code: "CFA", name: "CFA" },
+            { code: "Python", name: "Python Programming" },
+            { code: "Digital Marketing", name: "Digital Marketing" },
+            { code: "B-Pharma", name: "B-Pharma" },
+            { code: "CA", name: "CA" },
+            { code: "M.Tech", name: "M-TECH" },
+            { code: "LLB", name: "LLB" },
+            { code: "BSC NURSING", name: "BSC NURSING" },
+            { code: "Machine Learning", name: "Machine Learning" },
+            { code: "UPSC CSE", name: "UPSC CSE" },
+            { code: "B.Sc in Agriculture", name: "B.Sc in Agriculture" },
+            { code: "Entrepreneurship", name: "Entrepreneurship Development" },
+            { code: "Full Stack", name: "Full Stack Web Development" },
+            { code: "MCA", name: "MCA" },
+            { code: "Cyber Security", name: "Cyber Security & Ethical Hacking" },
+            { code: "NLP", name: "NLP" },
+            { code: "SSC CGL", name: "SSC CGL" },
+            { code: "Railways", name: "Railways" },
+            { code: "Defence", name: "Defence" },
+            { code: "Teaching Exams", name: "Teaching Exams" },
+            { code: "Banking Exams", name: "Banking Exams" },
+            { code: "BMS", name: "BMS" },
+            { code: "Paramedical", name: "Paramedical Courses" },
+            { code: "BDS", name: "BDS" },
+            { code: "BAMS", name: "BAMS" },
+            { code: "BHMS", name: "BHMS" },
+            { code: "Java", name: "Java Programming" },
+            { code: "App Development", name: "App Development" },
+            { code: "LLM", name: "LLM" },
+            { code: "M.Pharm", name: "M.Pharm" },
+            { code: "M.Planning", name: "M.Planning" },
+            { code: "Mass Comm", name: "Mass Communications" },
+            { code: "Veterinary Sc", name: "Veterinary Sciences" },
+            { code: "BA", name: "Bachelor of Arts" },
+            { code: "Stock Market", name: "Stock Market / Trading" },
+            { code: "Journalism", name: "Journalism" },
+            { code: "B.Sc", name: "B.Sc" },
+            { code: "BBA", name: "BBA" },
+            { code: "B.Arch", name: "B.Arch" },
+            { code: "B.Ed", name: "B.Ed" },
+            { code: "M.Sc", name: "M.Sc" },
+            { code: "Bachelor of Physiotherapy", name: "Bachelor of Physiotherapy" },
+            { code: "B.Des", name: "B.Des" },
+            { code: "B.Planning", name: "B.Planning" },
+            { code: "Agriculture", name: "Agriculture" },
+            { code: "Arts", name: "Arts" },
+            { code: "Commerce", name: "Commerce" },
+            { code: "Computer Applications", name: "Computer Applications" },
+            { code: "Design", name: "Design" },
+            { code: "Engineering", name: "Engineering" },
+            { code: "Law", name: "Law" },
+            { code: "Management", name: "Management" },
+            { code: "Medical", name: "Medical" },
+            { code: "Pharmacy", name: "Pharmacy" },
+            { code: "Science", name: "Science" },
+            { code: "Architecture", name: "Architecture" },
+            { code: "Aviation", name: "Aviation" },
+            { code: "Dental", name: "Dental" },
+            { code: "Education", name: "Education" },
+            { code: "Hotel Management", name: "Hotel Management" },
+            { code: "Animation", name: "Animation" }
+        ];
+
+        const grid = document.getElementById('courseGrid');
+        const searchInput = document.getElementById('searchInput');
+        const pills = document.querySelectorAll('.pill');
+
+        // Render Function
+        function renderCourses(data) {
+            grid.innerHTML = '';
+            
+            if(data.length === 0) {
+                grid.innerHTML = '<div style="text-align:center; color:white; width:100%; grid-column: 1/-1; font-size:18px; line-height: 1.6; background: rgba(255,255,255,0.1); padding: 30px; border-radius: 15px; backdrop-filter: blur(5px);">Sorry for this inconvenience.<br>Please mail us at <a href="mailto:safarnamastudy@yahoo.com" style="color: #ffcc00; text-decoration: underline;">safarnamastudy@yahoo.com</a><br>We will add your desired course soon.</div>';
+                return;
+            }
+
+            data.forEach((course, index) => {
+                let card;
+                const coursePageMap = {
+                    'MBA': 'mba.html',
+                    'BTech': 'btech.html',
+                    'MBBS': 'mbbs.html',
+                    'BCom': 'bcom.html',
+                    'SQL': 'sql.html',
+                    'BCA': 'bca.html',
+                    'CFA': 'cfa.html',
+                    'Python': 'python.html',
+                    'Digital Marketing': 'digital-marketing.html',
+                    'Java': 'java.html',
+                    'B-Pharma': 'b-pharma.html',
+                    'CA': 'ca.html',
+                    'M.Tech': 'mtech.html',
+                    'LLB': 'llb.html',
+                    'BSC NURSING': 'nursing.html',
+                    'Machine Learning': 'machine-learning.html',
+                    'UPSC CSE': 'upsc-cse.html',
+                    'B.Sc in Agriculture': 'bsc-agriculture.html',
+                    'Entrepreneurship': 'entrepreneurship.html',
+                    'Full Stack': 'fullstack.html',
+                    'MCA': 'mca.html',
+                    'Cyber Security': 'cyber-security.html',
+                    'NLP': 'nlp.html',
+                    'SSC CGL': 'ssc-cgl.html',
+                    'Railways': 'railways.html',
+                    'Defence': 'defence-exams.html',
+                    'Teaching Exams': 'teaching-exams.html',
+                    'Banking Exams': 'banking-exams.html',
+                    'BMS': 'bms.html',
+                    'Paramedical': 'paramedical.html',
+                    'BDS': 'bds.html',
+                    'BAMS': 'bams.html',
+                    'BHMS': 'bhms.html',
+                    'App Development': 'app-development.html',
+                    'LLM': 'llm.html',
+                    'M.Pharm': 'm-pharm.html',
+                    'M.Planning': 'm-planning.html',
+                    'Mass Comm': 'mass-comm.html',
+                    'Veterinary Sc': 'veterinary-sc.html',
+                    'BA': 'ba.html',
+                    'Stock Market': 'stock-market.html',
+                    'Journalism': 'journalism.html',
+                    'B.Sc': 'bsc.html',
+                    'BBA': 'bba.html',
+                    'B.Arch': 'b-arch.html',
+                    'B.Ed': 'b-ed.html',
+                    'M.Sc': 'msc.html',
+                    'Bachelor of Physiotherapy': 'bpt.html',
+                    'B.Des': 'b-des.html',
+                    'B.Planning': 'b-planning.html',
+                    'Agriculture': 'agriculture.html',
+                    'Arts': 'arts.html',
+                    'Commerce': 'commerce.html',
+                    'Computer Applications': 'computer-applications.html',
+                    'Design': 'design.html',
+                    'Engineering': 'engineering.html',
+                    'Law': 'law.html',
+                    'Management': 'management.html',
+                    'Medical': 'medical.html',
+                    'Pharmacy': 'pharmacy.html',
+                    'Science': 'science.html',
+                    'Architecture': 'architecture.html',
+                    'Aviation': 'aviation.html',
+                    'Dental': 'dental.html',
+                    'Education': 'education.html',
+                    'Hotel Management': 'hotel-management.html',
+                    'Animation': 'animation.html'
+                };
+                
+                // Check if course has a dedicated page
+                if(coursePageMap[course.code]) {
+                    const link = document.createElement('a');
+                    link.href = coursePageMap[course.code];
+                    link.className = 'course-card';
+                    link.style.animationDelay = `${index * 0.05}s`;
+                    link.style.textDecoration = 'none';
+                    link.style.color = 'inherit';
+                    link.style.cursor = 'pointer';
+                    
+                    link.innerHTML = `
+                        <div class="card-img-placeholder">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3>${course.code}</h3>
+                    `;
+                    card = link;
+                } else {
+                    card = document.createElement('div');
+                    card.className = 'course-card';
+                    card.style.animationDelay = `${index * 0.05}s`;
+                    
+                    card.innerHTML = `
+                        <div class="card-img-placeholder">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3>${course.code}</h3>
+                    `;
+                }
+                
+                grid.appendChild(card);
+            });
+        }
+
+        // Initial Render
+        renderCourses(courses);
+
+        // Search Logic
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            const filtered = courses.filter(course => 
+                course.code.toLowerCase().includes(query) || 
+                course.name.toLowerCase().includes(query)
+            );
+            renderCourses(filtered);
+            
+            // Reset pills if searching
+            pills.forEach(p => p.classList.remove('active'));
+        });
+
+        // Pill Logic (Simulated Categories)
+        pills.forEach(pill => {
+            pill.addEventListener('click', () => {
+                pills.forEach(p => p.classList.remove('active'));
+                pill.classList.add('active');
+                
+                const filter = pill.getAttribute('data-filter');
+                
+                if (filter === 'all') {
+                    renderCourses(courses);
+                } else {
+                    // Simple simulation logic for keywords
+                    const filtered = courses.filter(course => {
+                        const searchTerms = {
+                            'Engineering': ['B.Tech', 'M.Tech', 'Java', 'Python'],
+                            'Management': ['MBA', 'BBA', 'BMS', 'Entrepreneurship'],
+                            'Medical': ['MBBS', 'BDS', 'BAMS', 'BHMS', 'Nursing', 'Paramedical'],
+                            'Commerce': ['B.Com', 'CA', 'CFA'],
+                            'IT': ['SQL', 'Data', 'BCA', 'MCA', 'Cyber', 'Full Stack', 'App', 'Machine', 'NLP'],
+                            'Agriculture': ['Agriculture']
+                        };
+                        
+                        const keywords = searchTerms[filter] || [];
+                        return keywords.some(k => course.name.includes(k) || course.code.includes(k));
+                    });
+                    renderCourses(filtered);
+                }
+            });
+        });
+    </script>
+<script src="auth-ui.js?v=20260206e"></script>
+</body>
+</html>
+
+
+
+
