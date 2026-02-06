@@ -1248,7 +1248,7 @@ html {
 
   .safareasy-apps-btn {
     position: absolute;
-    bottom: -30px; /* Position below the bar */
+    bottom: -38px; /* Position below the bar */
     right: 8px;    /* Align to the right */
     width: auto;    /* Don't span full width */
     max-width: calc(100vw - 16px);
@@ -2150,6 +2150,7 @@ html {
 
 /* Filter Modal Base (Hidden) */
 .filter-modal { display: none; }
+
 
 
 
