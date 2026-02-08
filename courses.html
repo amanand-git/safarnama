@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses | Safarnama</title>
+    <link rel="icon" type="image/png" sizes="64x64" href="images/mainfavicon.png?v=1" /><!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8f9fa;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* HEADER */
+        .top-header {
+            background: white;
+            border-bottom: 1px solid #e0e0e0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-inner {
+            padding: 16px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        .mobile-go-home {
+            display: none;
+        }
+
+        /* Hero Banner Search Section */
+        .hero-search-section {
+            background: linear-gradient(135deg, #e8f1f9 0%, #f0e8f9 100%);
+            padding: 60px 20px;
+            text-align: center;
+            margin-top: 0;
+        }
+
+        .hero-search-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-search-section h1 {
+            font-size: 42px;
+            color: #1a1a1a;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .hero-search-section p {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .hero-search-box {
+            position: relative;
+            display: flex;
+            align-items: center;
+            background: white;
+            padding: 12px 16px 12px 24px;
+            border-radius: 50px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            max-width: 550px;
+            margin: 0 auto;
+        }
+
+        .hero-search-box input {
+            flex: 1;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            color: #333;
+            font-family: 'Outfit', sans-serif;
+            background: transparent;
+            padding-right: 60px;
+        }
+
+        .hero-search-box input::placeholder {
+            color: #999;
+        }
+
+        .hero-search-btn {
+            position: absolute;
+            right: 6px;
+            background: #7c5cdb;
+            color: white;
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .hero-search-btn:hover {
+            background: #6a4bc3;
+            box-shadow: 0 2px 8px rgba(124, 92, 219, 0.4);
+        }
+
+        .hero-search-btn i {
+            font-size: 18px;
+        }
+
+        /* Search & Categories Container */
+        .search-area {
+            display: none;
+        }
+
+        /* MAIN SECTION */
+        .courses-section {
+            flex: 1;
+            background: #f8f9fa;
+            padding: 50px 20px;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Section Title */
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h1 {
+            font-size: 32px;
+            color: #333;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            font-size: 16px;
+            color: #666;
+        }
+
+        /* PILLS / FILTER */
+        .pills-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 50px;
+        }
+
+        .pill {
+            background: white;
+            color: #333;
+            border: 1px solid #e0e0e0;
+            padding: 10px 22px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 500;
+            font-size: 14px;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .pill:hover {
+            border-color: #ff9800;
+            color: #ff9800;
+        }
+
+        .pill.active {
+            background: #ff9800;
+            color: white;
+            border-color: #ff9800;
+        }
+
+        /* COURSE GRID */
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .course-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 28px;
+            text-align: left;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+            min-height: auto;
+        }
+
+        .course-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-color: #e8e8e8;
+        }
+
+        /* Card Title */
+        .course-card h3 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        /* Card Description */
+        .course-card p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+
+        /* Card Icon Placeholder */
+        .card-img-placeholder {
+            width: 100%;
+            height: auto;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            color: #999;
+            font-size: 28px;
+            margin-bottom: 0;
+        }
+
+        /* Go Home Link */
+        .go-home {
+            width: 100%;
+            margin: 0 0 30px 0;
+            padding: 0;
+        }
+
+        .go-home a {
+            color: #ff9800;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            display: inline-block;
+        }
+
+        .go-home a:hover {
+            text-decoration: underline;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero-search-section {
+                padding: 40px 16px;
+            }
+
+            .hero-search-section h1 {
+                font-size: 28px;
+                margin-bottom: 8px;
+            }
+
+            .hero-search-section p {
+                font-size: 16px;
+                margin-bottom: 24px;
+            }
+
+            .hero-search-box {
+                padding: 10px 16px;
+            }
+
+            .hero-search-btn {
+                width: 36px;
+                height: 36px;
+            }
+
+            .header-inner {
+                flex-direction: column;
+                gap: 16px;
+                align-items: flex-start;
+            }
+
+            .search-area {
+                width: 100%;
+                margin-left: 0;
+            }
+
+            .mobile-go-home {
+                display: block;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                color: #ff9800;
+                text-decoration: none;
+                font-weight: 600;
+                font-size: 14px;
+            }
+
+            .courses-section .go-home {
+                display: none !important;
+            }
+
+            .course-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 16px;
+            }
+
+            .course-card {
+                padding: 20px;
+            }
+
+            .course-card h3 {
+                font-size: 16px;
+            }
+
+            .pills-container {
+                justify-content: flex-start;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                padding-bottom: 10px;
+                margin-top: 20px;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+            }
+
+            .pills-container::-webkit-scrollbar {
+                display: none;
+            }
+
+            .pill {
+                flex: 0 0 auto;
+                padding: 8px 18px;
+                font-size: 13px;
+            }
+
+            .section-title h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="top-header">
+        <div class="header-inner">
+            <div class="logo">
+                <img src="images/logo.png" alt="Safarnama">
+            </div>
+
+            <a href="index.html" class="mobile-go-home">Go to Home</a>
+        </div>
+    </header>
+
+    <!-- HERO SEARCH SECTION -->
+    <section class="hero-search-section">
+        <div class="hero-search-container">
+            <h1>Find Courses That Fit You</h1>
+            <p>And start your Safar here.</p>
+            <div class="hero-search-box">
+                <input type="text" id="searchInput" placeholder="Search courses, colleges...">
+                <button class="hero-search-btn" onclick="handleSearchClick()">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- COURSES SECTION -->
+    <section class="courses-section">
+        <div class="container">
+            <div class="section-title" style="display: none;">
+                <h1>Find Your Course</h1>
+                <p>Browse hundreds of courses across India's top institutions</p>
+            </div>
+
+            <!-- Filter Pills -->
+            <div class="pills-container">
+                <button class="pill active" data-filter="all">All</button>
+                <button class="pill" data-filter="Engineering">BE/B.Tech</button>
+                <button class="pill" data-filter="Management">MBA/PGDM</button>
+                <button class="pill" data-filter="Medical">MBBS</button>
+                <button class="pill" data-filter="Engineering">ME/M.Tech</button>
+                <button class="pill" data-filter="Science">B.Sc</button>
+                <button class="pill" data-filter="Arts">BA</button>
+                <button class="pill" data-filter="Commerce">B.Com</button>
+                <button class="pill" data-filter="IT">BCA</button>
+                <button class="pill" data-filter="Management">BBA/BMS</button>
+                <button class="pill" data-filter="Science">B.Sc (N)</button>
+            </div>
+
+            <!-- Grid -->
+            <div class="course-grid" id="courseGrid">
+                <!-- Cards will be injected here via JS -->
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Course Data
+        const courses = [
+            { code: "MBA", name: "MBA" },
+            { code: "BTech", name: "B.Tech" },
+            { code: "MBBS", name: "MBBS" },
+            { code: "BCom", name: "B.Com" },
+            { code: "SQL", name: "SQL for Data Analysis" },
+            { code: "BCA", name: "BCA" },
+            { code: "CFA", name: "CFA" },
+            { code: "Python", name: "Python Programming" },
+            { code: "Digital Marketing", name: "Digital Marketing" },
+            { code: "B-Pharma", name: "B-Pharma" },
+            { code: "CA", name: "CA" },
+            { code: "M.Tech", name: "M-TECH" },
+            { code: "LLB", name: "LLB" },
+            { code: "BSC NURSING", name: "BSC NURSING" },
+            { code: "Machine Learning", name: "Machine Learning" },
+            { code: "UPSC CSE", name: "UPSC CSE" },
+            { code: "B.Sc in Agriculture", name: "B.Sc in Agriculture" },
+            { code: "Entrepreneurship", name: "Entrepreneurship Development" },
+            { code: "Full Stack", name: "Full Stack Web Development" },
+            { code: "MCA", name: "MCA" },
+            { code: "Cyber Security", name: "Cyber Security & Ethical Hacking" },
+            { code: "NLP", name: "NLP" },
+            { code: "SSC CGL", name: "SSC CGL" },
+            { code: "Railways", name: "Railways" },
+            { code: "Defence", name: "Defence" },
+            { code: "Teaching Exams", name: "Teaching Exams" },
+            { code: "Banking Exams", name: "Banking Exams" },
+            { code: "BMS", name: "BMS" },
+            { code: "Paramedical", name: "Paramedical Courses" },
+            { code: "BDS", name: "BDS" },
+            { code: "BAMS", name: "BAMS" },
+            { code: "BHMS", name: "BHMS" },
+            { code: "Java", name: "Java Programming" },
+            { code: "App Development", name: "App Development" },
+            { code: "LLM", name: "LLM" },
+            { code: "M.Pharm", name: "M.Pharm" },
+            { code: "M.Planning", name: "M.Planning" },
+            { code: "Mass Comm", name: "Mass Communications" },
+            { code: "Veterinary Sc", name: "Veterinary Sciences" },
+            { code: "BA", name: "Bachelor of Arts" },
+            { code: "Stock Market", name: "Stock Market / Trading" },
+            { code: "Journalism", name: "Journalism" },
+            { code: "B.Sc", name: "B.Sc" },
+            { code: "BBA", name: "BBA" },
+            { code: "B.Arch", name: "B.Arch" },
+            { code: "B.Ed", name: "B.Ed" },
+            { code: "M.Sc", name: "M.Sc" },
+            { code: "Bachelor of Physiotherapy", name: "Bachelor of Physiotherapy" },
+            { code: "B.Des", name: "B.Des" },
+            { code: "B.Planning", name: "B.Planning" },
+            { code: "Agriculture", name: "Agriculture" },
+            { code: "Arts", name: "Arts" },
+            { code: "Commerce", name: "Commerce" },
+            { code: "Computer Applications", name: "Computer Applications" },
+            { code: "Design", name: "Design" },
+            { code: "Engineering", name: "Engineering" },
+            { code: "Law", name: "Law" },
+            { code: "Management", name: "Management" },
+            { code: "Medical", name: "Medical" },
+            { code: "Pharmacy", name: "Pharmacy" },
+            { code: "Science", name: "Science" },
+            { code: "Architecture", name: "Architecture" },
+            { code: "Aviation", name: "Aviation" },
+            { code: "Dental", name: "Dental" },
+            { code: "Education", name: "Education" },
+            { code: "Hotel Management", name: "Hotel Management" },
+            { code: "Animation", name: "Animation" }
+        ];
+
+        const grid = document.getElementById('courseGrid');
+        const searchInput = document.getElementById('searchInput');
+        const pills = document.querySelectorAll('.pill');
+
+        // Icon mapping for different course types
+        const iconMap = {
+            'MBA': '📊',
+            'BTech': '⚙️',
+            'MBBS': '🏥',
+            'BCom': '💼',
+            'BCA': '💻',
+            'BBA': '📈',
+            'LLB': '⚖️',
+            'BSC NURSING': '🩺',
+            'BDS': '🦷',
+            'BAMS': '🌿',
+            'BCS': '💾',
+            'Java': '☕',
+            'Python': '🐍',
+            'Architecture': '🏛️',
+            'Design': '🎨',
+            'Education': '📚',
+            'Medical': '🏥',
+            'Engineering': '⚙️',
+            'Science': '🔬',
+            'Arts': '✨',
+            'Law': '⚖️',
+            'Commerce': '💰'
+        };
+
+        // Render Function
+        function renderCourses(data) {
+            grid.innerHTML = '';
+            
+            if(data.length === 0) {
+                grid.innerHTML = '<div style="text-align:center; color:#666; width:100%; grid-column: 1/-1; font-size:16px; line-height: 1.6; background: white; padding: 40px; border-radius: 12px; border: 1px solid #e0e0e0;">Sorry, no courses found.<br>Please mail us at <a href="mailto:safarnamastudy@yahoo.com" style="color: #ff9800; text-decoration: none;"><u>safarnamastudy@yahoo.com</u></a><br>We will add your desired course soon.</div>';
+                return;
+            }
+
+            data.forEach((course) => {
+                let card;
+                const coursePageMap = {
+                    'MBA': 'mba.html',
+                    'BTech': 'btech.html',
+                    'MBBS': 'mbbs.html',
+                    'BCom': 'bcom.html',
+                    'SQL': 'sql.html',
+                    'BCA': 'bca.html',
+                    'CFA': 'cfa.html',
+                    'Python': 'python.html',
+                    'Digital Marketing': 'digital-marketing.html',
+                    'Java': 'java.html',
+                    'B-Pharma': 'b-pharma.html',
+                    'CA': 'ca.html',
+                    'M.Tech': 'mtech.html',
+                    'LLB': 'llb.html',
+                    'BSC NURSING': 'nursing.html',
+                    'Machine Learning': 'machine-learning.html',
+                    'UPSC CSE': 'upsc-cse.html',
+                    'B.Sc in Agriculture': 'bsc-agriculture.html',
+                    'Entrepreneurship': 'entrepreneurship.html',
+                    'Full Stack': 'fullstack.html',
+                    'MCA': 'mca.html',
+                    'Cyber Security': 'cyber-security.html',
+                    'NLP': 'nlp.html',
+                    'SSC CGL': 'ssc-cgl.html',
+                    'Railways': 'railways.html',
+                    'Defence': 'defence-exams.html',
+                    'Teaching Exams': 'teaching-exams.html',
+                    'Banking Exams': 'banking-exams.html',
+                    'BMS': 'bms.html',
+                    'Paramedical': 'paramedical.html',
+                    'BDS': 'bds.html',
+                    'BAMS': 'bams.html',
+                    'BHMS': 'bhms.html',
+                    'App Development': 'app-development.html',
+                    'LLM': 'llm.html',
+                    'M.Pharm': 'm-pharm.html',
+                    'M.Planning': 'm-planning.html',
+                    'Mass Comm': 'mass-comm.html',
+                    'Veterinary Sc': 'veterinary-sc.html',
+                    'BA': 'ba.html',
+                    'Stock Market': 'stock-market.html',
+                    'Journalism': 'journalism.html',
+                    'B.Sc': 'bsc.html',
+                    'BBA': 'bba.html',
+                    'B.Arch': 'b-arch.html',
+                    'B.Ed': 'b-ed.html',
+                    'M.Sc': 'msc.html',
+                    'Bachelor of Physiotherapy': 'bpt.html',
+                    'B.Des': 'b-des.html',
+                    'B.Planning': 'b-planning.html',
+                    'Agriculture': 'agriculture.html',
+                    'Arts': 'arts.html',
+                    'Commerce': 'commerce.html',
+                    'Computer Applications': 'computer-applications.html',
+                    'Design': 'design.html',
+                    'Engineering': 'engineering.html',
+                    'Law': 'law.html',
+                    'Management': 'management.html',
+                    'Medical': 'medical.html',
+                    'Pharmacy': 'pharmacy.html',
+                    'Science': 'science.html',
+                    'Architecture': 'architecture.html',
+                    'Aviation': 'aviation.html',
+                    'Dental': 'dental.html',
+                    'Education': 'education.html',
+                    'Hotel Management': 'hotel-management.html',
+                    'Animation': 'animation.html'
+                };
+                
+                const icon = iconMap[course.code] || '📖';
+                
+                // Check if course has a dedicated page
+                if(coursePageMap[course.code]) {
+                    const link = document.createElement('a');
+                    link.href = coursePageMap[course.code];
+                    link.className = 'course-card';
+                    link.style.textDecoration = 'none';
+                    link.style.color = 'inherit';
+                    
+                    link.innerHTML = `
+                        <div class="card-img-placeholder" style="margin-bottom: 12px;">
+                            <span style="font-size: 32px;">${icon}</span>
+                        </div>
+                        <h3>${course.name}</h3>
+                    `;
+                    card = link;
+                } else {
+                    card = document.createElement('div');
+                    card.className = 'course-card';
+                    
+                    card.innerHTML = `
+                        <div class="card-img-placeholder" style="margin-bottom: 12px;">
+                            <span style="font-size: 32px;">${icon}</span>
+                        </div>
+                        <h3>${course.name}</h3>
+                    `;
+                }
+                
+                grid.appendChild(card);
+            });
+        }
+
+        // Initial Render
+        renderCourses(courses);
+
+        // Handle Search Button Click
+        function handleSearchClick() {
+            const query = searchInput.value.toLowerCase();
+            if (query.trim()) {
+                const filtered = courses.filter(course => 
+                    course.code.toLowerCase().includes(query) || 
+                    course.name.toLowerCase().includes(query)
+                );
+                renderCourses(filtered);
+                pills.forEach(p => p.classList.remove('active'));
+            }
+        }
+
+        // Search Logic
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            const filtered = courses.filter(course => 
+                course.code.toLowerCase().includes(query) || 
+                course.name.toLowerCase().includes(query)
+            );
+            renderCourses(filtered);
+            
+            // Reset pills if searching
+            pills.forEach(p => p.classList.remove('active'));
+        });
+
+        // Pill Logic (Simulated Categories)
+        pills.forEach(pill => {
+            pill.addEventListener('click', () => {
+                pills.forEach(p => p.classList.remove('active'));
+                pill.classList.add('active');
+                
+                const filter = pill.getAttribute('data-filter');
+                
+                if (filter === 'all') {
+                    renderCourses(courses);
+                } else {
+                    // Simple simulation logic for keywords
+                    const filtered = courses.filter(course => {
+                        const searchTerms = {
+                            'Engineering': ['B.Tech', 'M.Tech', 'Java', 'Python', 'B.Arch'],
+                            'Management': ['MBA', 'BBA', 'BMS', 'Entrepreneurship', 'Hotel'],
+                            'Medical': ['MBBS', 'BDS', 'BAMS', 'BHMS', 'Nursing', 'Paramedical', 'Pharma'],
+                            'Commerce': ['B.Com', 'CA', 'CFA'],
+                            'IT': ['SQL', 'Data', 'BCA', 'MCA', 'Cyber', 'Full Stack', 'App', 'Machine', 'NLP'],
+                            'Science': ['B.Sc', 'M.Sc', 'Agriculture', 'Nursing'],
+                            'Arts': ['BA', 'Journalism', 'Mass Comm'],
+                            'Agriculture': ['Agriculture', 'B.Sc in Agriculture']
+                        };
+                        
+                        const keywords = searchTerms[filter] || [];
+                        return keywords.some(k => course.name.includes(k) || course.code.includes(k));
+                    });
+                    renderCourses(filtered);
+                }
+            });
+        });
+    </script>
+<script src="auth-ui.js?v=20260206f"></script>
+</body>
+</html>
+
+
+
+
+
+
+
