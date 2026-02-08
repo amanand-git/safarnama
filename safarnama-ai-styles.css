@@ -1455,3 +1455,60 @@ body {
     font-size: 19px;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ===== CHAT TRANSPARENCY OVERRIDE (PASTE AT END) ===== */
+
+/* Remove all chat bubble backgrounds */
+.user-message .message-content,
+.ai-message .message-content,
+.typing-indicator {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* User text color */
+.user-message .message-content {
+  color: #ff9800 !important; /* Orange */
+}
+
+/* AI text color */
+.ai-message .message-content {
+  color: #000000 !important; /* Black */
+}
+
+/* Keep code readable */
+.message-content code {
+  background: rgba(0, 0, 0, 0.08);
+  color: inherit;
+}
