@@ -989,13 +989,13 @@ body {
 }
 
 .user-message .message-content {
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.95) 0%, rgba(6, 182, 212, 0.9) 100%);
-  color: #ecfeff;
+  background: linear-gradient(135deg, rgba(255, 152, 0, 0.95) 0%, rgba(255, 87, 34, 0.9) 100%);
+  color: #ffffff;
   border-bottom-right-radius: 5px;
-  border-color: rgba(167, 243, 208, 0.48);
+  border-color: rgba(255, 193, 7, 0.48);
   box-shadow:
-    0 10px 26px rgba(6, 182, 212, 0.22),
-    0 8px 22px rgba(16, 185, 129, 0.28);
+    0 10px 26px rgba(255, 87, 34, 0.22),
+    0 8px 22px rgba(255, 152, 0, 0.28);
 }
 
 .ai-message .message-content {
